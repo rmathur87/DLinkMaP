@@ -2,8 +2,9 @@
 Drosophila Linkage Mapping Pipeline
 
 
-MAP_general.R
+MAP_general.R:
 Conduct QTL Mapping for the user defined phenotype ('metabolites', 'triglyceride', 'male weight', 'female weight', and 'trehalose' have been tested)
+
 Inputs:
 commDir - directory where all QTL Mapping scripts are contained
 p - Whether permutation testing should be (p=1) or should not be (p=0) conducted
