@@ -3,6 +3,7 @@ Drosophila Linkage Mapping Pipeline
 
 
 MAP_general.R:
+
 Conduct QTL Mapping for the user defined phenotype ('metabolites', 'triglyceride', 'male weight', 'female weight', and 'trehalose' have been tested)
 
 Inputs:
