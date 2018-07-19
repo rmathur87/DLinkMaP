@@ -1,6 +1,16 @@
 # DLinkMaP
-Drosophila Linkage Mapping Pipeline
+Drosophila Linkage Mapping Pipeline (DLinkMaP)
 
+
+This R code was developed to conduct Quantitative Trait Loci (QTL) mapping based on haplotype probabilities for the Drosophila Synthetic Population Resource (DSPR). The code performs a linear mixed model analysis at 10kB intervals throughout the Drosophila genome. Based on the round robin crossing design described in Dew-Budd et al. (2018, in preparation), random effect terms are included for month, round robin group, RIL by month, and cross (all of these are included by default in the software). Using haplotype frequencies as found in the "DSPRqtlDataA", test founder probabilities corresponding to all 8 x 8 = 64 founder by maternal/paternal combinations are calculated. Six separate non-null models corresponding to additive, dominant, and full found by parent effects as main effects and diet interactions were included in the model (all of these models are included by default in the software). Statistical inference is conducted by calculating the χ2-statistics based on the difference in model log-likelihoods in a hierarchical manner, and determining p-values based on the χ2-distribution.
+
+The software has the capability to conduct epistasis (gene-gene interaction) modeling by calculating the cross product of the haplotype frequencies for the additive model. Dominant and full models are not considered for epistatic modeling. By default the software calculates epistatic effects for all pairwise 10kB positions in the genome. As  in  the  non-epistatic  analysis,  the  statistical  inference  is  based  onχ2-statistics  and  negative  log  p-values  are  reported.
+
+For  each  significant  peak (by default the complete genome includes 11,768 QTLs, thus a negative log p-value above 5.37 is bonferroni adjusted significant),  the  range  of  influence  for  each  peak,  95%  confidence  intervals is  computed  using  a  LOD  drop  of  two.  For  the  epistatic  models,  a  marginal  confidence  interval  was  calculated  for  each  QTL  involved  in  a  significant  epistatic  interaction  (threshold  of  six  for  the  –log  p-value).  A  Bayesian  model  was  conducted  to  estimate  the  variance  explained  for  each  non-epistatic  peak  and  the  significant  epistatic  interactions  (more  details  are  described  in  supplemental  methods). 
+
+
+Running DLinkMaP:
+By running the "MAP_general.R" script with appropriate inputs (see below), the QTL mapping will be conducted (using the user defined phenotype) for all QTLs in DSPR Population A. The following R scripts are included in the pipeline:
 
 MAP_general.R:
 
