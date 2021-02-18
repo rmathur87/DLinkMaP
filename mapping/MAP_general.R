@@ -25,6 +25,8 @@ epistaticModel <- args[8] # T/F if an epistatic model is run. F is normal mappin
 print(paste0("Model Type: ", modelType))
 epistaticQTL <- as.integer(args[9]) # Integer (out of the total number of QTLs tested) for the epistatic model
 print(paste0('Epistatic QTL: ', epistaticQTL))
+numPermutations <- as.integer(args[10]) # Number of simulation to perform for permutation testing
+print(paste0('Num Permutations: ', numPermutations))
 
 
 ### Load the dependent R scripts (make sure these are located in the commDir directory)
@@ -138,6 +140,14 @@ system.time({
         all.lik <- c(all.lik, list(c(i, q, rep(NA, 6))))
       }
     } else {
+      if(p != 0) {
+          LOD_res <- numeric(numPermutations) ## set aside space for results
+          lik_res <- numeric(numPermutations)
+	  for (perm in 1:numPermutations) {
+              QTL.map <- QTL.F.Map(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW)
+              LOD <- c(LOD, list(QTL.map$out))
+              all.lik <- c(all.lik, list(c(i, QTL.map$log.lik))) 
+      }
       QTL.map <- QTL.F.Map(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW)
       LOD <- c(LOD, list(QTL.map$out))
       all.lik <- c(all.lik, list(c(i, QTL.map$log.lik)))
