@@ -39,3 +39,11 @@ Conduct QTL Mapping for the user defined phenotype ('metabolites', 'triglyceride
 
 MAPFun_general.R; FUN.R; gradMM.R; MM_Process.R; QC.R; QTL_Process.R
 These script contain key functions which are used by MAP_general.R to conduct the design matrix setup, PCA, and inference.
+
+Necessary R packages include:
+- gplots - https://cran.r-project.org/web/packages/gplots/index.html
+- lme4 - https://cran.r-project.org/web/packages/lme4/index.html
+- DSPRqtl - http://wfitch.bio.uci.edu/~dspr/Tools/Tutorial/index.html
+- DSPRqtlDataA - http://wfitch.bio.uci.edu/~dspr/Tools/Tutorial/index.html
+
+
