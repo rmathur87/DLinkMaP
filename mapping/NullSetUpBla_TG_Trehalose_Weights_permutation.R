@@ -26,6 +26,7 @@ print(paste0("FileName: ", fileName))
 phenotype <- args[3]
 #phenotype='Weight'
 print(paste0('Phenotype: ', phenotype))
+phenotypeColumnName = 'average.wt.per.vial'
 #outDir <- fileArgs[which(fileArgs == 'outDir')+2]
 outDir <- args[4]
 print(paste0('outDir: ', outDir))
@@ -50,7 +51,7 @@ print("Read Parameters File")
 dat <- read.table(fileName, sep = ',', header = TRUE)
 print("Read in Dataset")
 
-allPerms = list()
+allPerms = c()
 for (p in 1:numPerm) {
     if (phenotype == 'metabolite') {
       metaboliteNum <- args[6]
@@ -58,14 +59,15 @@ for (p in 1:numPerm) {
       y <- read.table(paste0(metabDir, "/artifactResiduals/residual", metaboliteNum, ".csv"), sep=",", header=T)
       y <- c(y)$x
     } else {
-      y <- sample(dat$y)
+      #y <- sample(dat$y)
+      y <- sample(dat[phenotypeColumnName])
       allPerms = c(allPerms, y)
     }
 }
 
 #Fixed Effects
-dat$Cross <- factor(dat$cross.type)
-Diet <- (dat$food.type == '(F) Fat')  - .5
+dat$Cross <- factor(dat$cross)
+Diet <- (dat$food == '(F) Fat')  - .5
 Zb <- Matrix(model.matrix(~0 + as.factor(cross.number), dat))
 ZCr <- Matrix(model.matrix(~ 0 + Cross, dat))
 Za <- Matrix(Rand(dat$female.line, dat$male.line))
@@ -81,7 +83,7 @@ ZBlaD <- ZBla * Diet
 ZgD <- Zg * Diet
 ZMD <- ZM * Diet
 ZV <- Matrix(model.matrix(~0 + as.factor(vial), dat))
-XNull <- cBind(1, Diet)
+XNull <- cbind(1, Diet)
 
 
 if (phenotype == 'tg' | phenotype == 'trehalose') {
@@ -104,15 +106,15 @@ LineF <- dat$female.line
 
 allFnull = list()
 for (p in 1:numPerm) {
-    if (phenotype == 'weight') {
+    if (phenotype == 'Weight') {
       sqtW <- sqrt(as.numeric(dat$number.weighed))
   
       #fNull <- DiaCor3(sqtW * y, sqtW * XNull, t(sqtW * Z), nZ, nZG)
-      thisY <- allPerms[p]
-      fNull <- DiaCor3(sqtW * thisY, sqtN * XNull, t(sqtW * Z), nZ, nZG)
+      thisY <- allPerms[[p]]
+      fNull <- DiaCor3(sqtW * thisY, sqtW * XNull, t(sqtW * Z), nZ, nZG)
       allFnull = c(allFnull, fNull)
     } else {
-      fNull <- DiaCor3(y, XNull, t(Z), nZ, nZG)
+      #fNull <- DiaCor3(y, XNull, t(Z), nZ, nZG)
       thisY <- allPerms[p]
       fNull <- DiaCor3(thisY, XNull, t(Z), nZ, nZG)
     }
