@@ -5,6 +5,8 @@
 
 ## Read the Arguments from Command Line
 args <- commandArgs(trailingOnly = TRUE)
+parametersFile = args[1]
+parameters = read.table(parametersFile, sep = ',', header = T)
 commDir <- args[1] #The directory where dependent scripts are stored
 setwd(commDir)
 p <- as.integer(args[2]) #p=0 is no permutation, while p=1 is permutation
@@ -143,10 +145,11 @@ system.time({
       if(p != 0) {
           LOD_res <- numeric(numPermutations) ## set aside space for results
           lik_res <- numeric(numPermutations)
-	  for (perm in 1:numPermutations) {
-              QTL.map <- QTL.F.Map(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW)
-              LOD <- c(LOD, list(QTL.map$out))
-              all.lik <- c(all.lik, list(c(i, QTL.map$log.lik))) 
+      }
+	    for (perm in 1:numPermutations) {
+          QTL.map <- QTL.F.Map(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW)
+          LOD <- c(LOD, list(QTL.map$out))
+          all.lik <- c(all.lik, list(c(i, QTL.map$log.lik)))
       }
       QTL.map <- QTL.F.Map(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW)
       LOD <- c(LOD, list(QTL.map$out))

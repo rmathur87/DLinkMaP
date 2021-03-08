@@ -3,7 +3,7 @@
 
 #.libPaths('/home/sroy/R/x86_64-pc-linux-gnu-library/3.0')
 args <- commandArgs(trailingOnly = TRUE)
-#dir <- "Z:/Drosophila/Bayesian/general"
+#dir <- "C:/Users/rmathur/OneDrive - Research Triangle Institute/Documents/GitHub/DLinkMAP/mapping"
 dir <- args[1]
 setwd(dir)
 
@@ -20,7 +20,7 @@ source('QC.R')
 #Get Values from Parameters File
 #fileName <- fileArgs[which(fileArgs == 'fileName')+2]
 fileName <- args[2]
-#fileName <- 'female_Weight_Formatted_AvgByVial.txt'
+#fileName <- 'C:/Users/rmathur/OneDrive - Research Triangle Institute/Documents/GitHub/DLinkMAP/phenotypes/male_Weight_Formatted_AvgByVial.txt'
 print(paste0("FileName: ", fileName))
 #phenotype <- fileArgs[which(fileArgs == 'phenotype')+2]
 phenotype <- args[3]
@@ -28,6 +28,7 @@ phenotype <- args[3]
 print(paste0('Phenotype: ', phenotype))
 phenotypeColumnName = 'average.wt.per.vial'
 #outDir <- fileArgs[which(fileArgs == 'outDir')+2]
+outDir <- 'C:/Users/rmathur/OneDrive - Research Triangle Institute/MPP paper/permutationResults/NullModels'
 outDir <- args[4]
 print(paste0('outDir: ', outDir))
 numPerm <- args[5]
@@ -59,15 +60,15 @@ for (p in 1:numPerm) {
       y <- read.table(paste0(metabDir, "/artifactResiduals/residual", metaboliteNum, ".csv"), sep=",", header=T)
       y <- c(y)$x
     } else {
-      #y <- sample(dat$y)
-      y <- sample(dat[phenotypeColumnName])
+      y <- sample(dat$y)
+      #y <- sample(dat[phenotypeColumnName])
       allPerms = c(allPerms, y)
     }
 }
 
 #Fixed Effects
-dat$Cross <- factor(dat$cross)
-Diet <- (dat$food == '(F) Fat')  - .5
+dat$Cross <- factor(dat$cross.type)
+Diet <- (dat$food.type == '(F) Fat')  - .5
 Zb <- Matrix(model.matrix(~0 + as.factor(cross.number), dat))
 ZCr <- Matrix(model.matrix(~ 0 + Cross, dat))
 Za <- Matrix(Rand(dat$female.line, dat$male.line))
