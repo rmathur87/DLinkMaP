@@ -7,29 +7,43 @@
 args <- commandArgs(trailingOnly = TRUE)
 parametersFile = args[1]
 parameters = read.table(parametersFile, sep = ',', header = T)
-commDir <- args[1] #The directory where dependent scripts are stored
-setwd(commDir)
-p <- as.integer(args[2]) #p=0 is no permutation, while p=1 is permutation
-print(paste0("Permutation: ", p))
-set.seed(92187) #To ensure that results are replicable
-u <- round(runif(1000) * 2^31)
-outDir <- args[3] #Directory where results will be written to
-print(paste0("Out Dir: ", outDir))
-phenotype <- args[4] #Which phenotype is being analyzed - 'metabolite', 'weight', 'trehalose', and 'TG' have been tested
-print(paste0("Phenotype: ", phenotype))
-weight.sex <- args[5] #if the 'weight' phenotype is being analyzed, which sex is analyzed - for all other phenotypes, ignore this!
-print(paste0('Weight Sex: ', weight.sex))
-weight.type <- args[6] # if the 'weight' phenptype is being anayzed, whether the original data or the average by vial is being analyzed - for all other phenotypes, ignore this!!
-print(paste0('Weight Type: ', weight.type))
-fileName <- args[7] # the filepath and name of the dataset to be analyzed
-print(paste0("File Name: ", fileName))
-epistaticModel <- args[8] # T/F if an epistatic model is run. F is normal mapping with additive, dominant and full effects; T is additive with epistatic effects for all pairs of QTLs
-print(paste0("Model Type: ", modelType))
-epistaticQTL <- as.integer(args[9]) # Integer (out of the total number of QTLs tested) for the epistatic model
-print(paste0('Epistatic QTL: ', epistaticQTL))
-numPermutations <- as.integer(args[10]) # Number of simulation to perform for permutation testing
-print(paste0('Num Permutations: ', numPermutations))
 
+# Script and Seed Parameters
+commDir <- parameters[which(parameters[,1]=='commDir'), "Value"] #The directory where dependent scripts are stored
+setwd(commDir)
+set.seed(parameters[which(parameters[,1]=='seed'), "Value"]) #To ensure that results are replicable
+u <- round(runif(1000) * 2^31)
+
+# Phenotype Parameters
+outDir <- parameters[which(parameters[,1]=='outDir'), "Value"] #Directory where results will be written to
+print(paste0("Out Dir: ", outDir))
+phenotype <- parameters[which(parameters[,1]=='phenotype'), "Value"] #Which phenotype is being analyzed - 'metabolite', 'weight', 'trehalose', and 'TG' have been tested
+print(paste0("Phenotype: ", phenotype))
+weight.sex <- parameters[which(parameters[,1]=='weightSex'), "Value"] #if the 'weight' phenotype is being analyzed, which sex is analyzed - for all other phenotypes, ignore this!
+print(paste0('Weight Sex: ', weight.sex))
+weight.type <- parameters[which(parameters[,1]=='weightType'), "Value"] # if the 'weight' phenptype is being anayzed, whether the original data or the average by vial is being analyzed - for all other phenotypes, ignore this!!
+print(paste0('Weight Type: ', weight.type))
+fileName <- parameters[which(parameters[,1]=='fileName'), "Value"] # the filepath and name of the dataset to be analyzed
+print(paste0("File Name: ", fileName))
+nullFile <- parameters[which(parameters[,1]=='nullDir'), "Value"]
+print(paste0('nullDir: ', nullFile))
+
+# Model Parameters
+p <- as.integer(parameters[which(parameters[,1]=='p'), "Value"]) #p=0 is no permutation, while p=1 is permutation
+print(paste0("Permutation: ", p))
+numPermutations <- as.integer(parameters[which(parameters[,1]=='numPermutations'), "Value"]) # Number of simulation to perform for permutation testing
+print(paste0('Num Permutations: ', numPermutations))
+#Epistatic and Survival Models
+epistaticModel <- parameters[which(parameters[,1]=='epistaticModel'), "Value"] # T/F if an epistatic model is run. F is normal mapping with additive, dominant and full effects; T is additive with epistatic effects for all pairs of QTLs
+print(paste0("Epistatic Model: ", epistaticModel))
+epistaticQTL <- as.integer(parameters[which(parameters[,1]=='epistaticQTL'), "Value"]) # Integer (out of the total number of QTLs tested) for the epistatic model
+print(paste0('Epistatic QTL: ', epistaticQTL))
+survivalType <- parameters[which(parameters[,1]=='survivalType'), "Value"]
+print(paste0('SurivalType: ', survivalType))
+survivalTrans <- parameters[which(parameters[,1]=='survivalTrans'), "Value"]
+print(paste0('SurvivalTrans: ', survivalTrans))
+survivalVarName <- parameters[which(parameters[,1]=='survivalVarName'), "Value"]
+print(paste0('survivalVarName: ', survivalVarName))
 
 ### Load the dependent R scripts (make sure these are located in the commDir directory)
 source('FUN.R')
