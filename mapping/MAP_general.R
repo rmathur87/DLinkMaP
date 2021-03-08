@@ -26,8 +26,8 @@ weight.type <- parameters[which(parameters[,1]=='weightType'), "Value"] # if the
 print(paste0('Weight Type: ', weight.type))
 fileName <- parameters[which(parameters[,1]=='fileName'), "Value"] # the filepath and name of the dataset to be analyzed
 print(paste0("File Name: ", fileName))
-nullFile <- parameters[which(parameters[,1]=='nullDir'), "Value"]
-print(paste0('nullDir: ', nullFile))
+nullDir <- parameters[which(parameters[,1]=='nullDir'), "Value"]
+print(paste0('nullDir: ', nullDir))
 
 # Model Parameters
 p <- as.integer(parameters[which(parameters[,1]=='p'), "Value"]) #p=0 is no permutation, while p=1 is permutation
@@ -57,11 +57,8 @@ source('QC.R')
 
 #Loading the dataset
 print("Reading Datafile!!")
-dat <- read.table(fileName, sep = ',', header = TRUE)
+dat <- read.table(as.character(fileName), sep = ',', header = TRUE)
 
-#Defining the Response and Loading the Null Model (Null Model is created by different script)
-nullDir <- args[10] #Directory the null R datafile is contained in
-print(paste0("nullDir: ", nullDir))
 
 if (phenotype == 'survival') {
   print("Survival Data Analysis is not Implemented!!")
@@ -98,7 +95,7 @@ if (phenotype == 'survival') {
   print("Loading Null Model Info!!")
   y <- dat$y
   
-  load(paste0(nullDir, '/Null2.RData'))
+  load(paste0(as.character(nullDir), '/Null2.RData'))
 }
 print("Loaded in Null Model!!")
 
@@ -148,7 +145,7 @@ system.time({
     #z is the cholesky's decomposition under the null - only random effects
     #L.V is the cholesky decomposition of V
     #q is the QTL position that will be tested for interaction
-    if (epistaticModel) {
+    if (as.logical(epistaticModel)) {
       if (i != epistaticQTL) {
         QTL.map <- QTL.F.Map.Inter(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, q, sqrtW=sqrtW)
         LOD <- c(LOD, list(QTL.map$out))
