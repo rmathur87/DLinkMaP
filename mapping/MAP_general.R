@@ -10,7 +10,8 @@ parameters = read.table(parametersFile, sep = ',', header = T)
 
 # Script and Seed Parameters
 commDir <- parameters[which(parameters[,1]=='commDir'), "Value"] #The directory where dependent scripts are stored
-setwd(commDir)
+print(paste0("Comm Dir: ", commDir))
+setwd(as.character(commDir))
 set.seed(parameters[which(parameters[,1]=='seed'), "Value"]) #To ensure that results are replicable
 u <- round(runif(1000) * 2^31)
 
@@ -46,6 +47,7 @@ survivalVarName <- parameters[which(parameters[,1]=='survivalVarName'), "Value"]
 print(paste0('survivalVarName: ', survivalVarName))
 
 ### Load the dependent R scripts (make sure these are located in the commDir directory)
+print(getwd())
 source('FUN.R')
 source('MapFun_general.R')
 source('gradMM.R')
