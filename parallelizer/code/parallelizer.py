@@ -200,6 +200,9 @@ for i in range( n_runs ):
 	with open( script_file_for_run, "w" ) as sfile:
 		for line in script_file:
 			add_line = line.strip()
+			if "source" in line:
+				print( "module purge", file=sfile )
+				print( "sleep 5", file=sfile )
 			if "Rscript" in line:
 				temp = [
 					line.split()[0],
