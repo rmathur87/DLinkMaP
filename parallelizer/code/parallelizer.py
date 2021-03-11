@@ -248,8 +248,8 @@ for i in range( n_runs ):
 		print( "cd /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{:04}".format( i+1 ), file=outfile )
 		print( "chmod +x perm{:04}_script.sh".format( i+1 ), file=outfile )
 		print( "run_script perm{:04}_script.sh".format( i+1 ), file=outfile )
-		print( "sleep 10", file=outfile )
-		print()
+		print( "sleep 60", file=outfile )
+		print( file=outfile )
 
 	print()
 	print()
