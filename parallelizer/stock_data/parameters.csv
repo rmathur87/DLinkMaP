@@ -1,0 +1,17 @@
+Option Name,Descrip,Value
+commDir,The directory where dependent scripts are stored. This will be set as the working directory for the program. This should be set to where the 'mapping' directory is located,~/Downloads/DLinkMaP/mapping/
+p,whether permutation testing is conducted (value: 1-yes; 0 - no),1
+seed,random seed,92187
+phenotype,"phenotype that will be analyzed ('metabolite', 'weight', 'trehalose', and 'TG' have been tested)",weight
+weightSex,"The sex of weight phenotype samples being analyzed (values include ""Male"" and ""Female"")",Male
+weightType,The version of the weight phenotype that is being analyzed ('original' and 'avgbyvial' have been tested),avgbyvial
+fileName,full path and file name of the dataset to analyze,/gobot/rmathur/DLinkMaP/phenotypes/MaleWt/male_Weight_Formatted_AvgByVial.txt
+metabDir,the directory the residual values for the metabolomic data is stored. This can be ignored for non-metabolomic analyses,NA
+epistaticModel,"T/F if an epistatic model is run. F is normal mapping with additive, dominant and full effects; T is additive with epistatic effects for all pairs of QTLs with the indicated epistatic QTL (epistaticQTL parameter)",F
+epistaticQTL,Integer (out of the total number of QTLs tested) for the epistatic model that will be run,NA
+numPermutations,Number of permutations to perform for permutation testing,1000
+survivalType,the type of survival data being analyzed (values = pupal; larvae). This can be ignored for non-survival analyses.,NA
+survivalTrans,type of survival data transformation analyzed. This can be ignored for non-survival analyses.,NA
+survivalVarName,name of the response for survival analysis. This can be ignored for non-survival analyses.,NA
+nullDir,directory for the null models,~/Downloads/DLinkMaP/results/maleWt
+outDir,directory for the output,~/Downloads/DLinkMaP/results/maleWt
