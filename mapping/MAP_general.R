@@ -210,19 +210,19 @@ if (epistaticModel) {
 #Write the results
 if (epistaticModel) {
   if (phenotype == 'metabolite') {
-    write.table(out, file=paste0(outDir, '/p-value_', metaboliteNum, '_', p, '_inter_', q, '.csv'), sep=',')
-    write.table(like.out, file=paste0(outDir, '/logLike_', metaboliteNum, '_', p, '_inter_', q, '.csv'), sep=',')
+    write.table(out, file=paste0(outDir, '/p-value_', metaboliteNum, '_', p, '_inter_', q, '.csv'), sep=',', row.names=F)
+    write.table(like.out, file=paste0(outDir, '/logLike_', metaboliteNum, '_', p, '_inter_', q, '.csv'), sep=',', row.names=F)
   } else {
-    write.table(out, file=paste0(outDir, '/p-value_', p, '_inter_', q, '.csv'), sep = ',')
-    write.table(like.out, file=paste0(outDir, '/logLike_', p, '_inter_', q, '.csv'), sep=',')
+    write.table(out, file=paste0(outDir, '/p-value_', p, '_inter_', q, '.csv'), sep = ',', row.names=F)
+    write.table(like.out, file=paste0(outDir, '/logLike_', p, '_inter_', q, '.csv'), sep=',', row.names=F)
   }
 } else {
   
   if (phenotype == 'metabolite') {
-    write.table(out, file = paste0(outDir, '/p-value', metaboliteNum, '.csv'), sep = ',')
-    write.table(like.out, file=paste0(outDir, '/logLike_', metaboliteNum, '.csv'), sep=',')
+    write.table(out, file = paste0(outDir, '/p-value', metaboliteNum, '.csv'), sep = ',', row.names=F)
+    write.table(like.out, file=paste0(outDir, '/logLike_', metaboliteNum, '.csv'), sep=',', row.names=F)
   } else {
-    write.table(out, file = paste0(outDir, '/p-value_', weight.sex, '_', weight.type, '.csv'), sep=',')
-    write.table(like.out, file=paste0(outDir, '/logLike_', weight.sex, '_', weight.type, '.csv'), sep=',')
+    write.table(out, file = paste0(outDir, '/p-value_', weight.sex, '_', weight.type, '.csv'), sep=',', row.names=F)
+    write.table(like.out, file=paste0(outDir, '/logLike_', weight.sex, '_', weight.type, '.csv'), sep=',', row.names=F)
   }
 }
