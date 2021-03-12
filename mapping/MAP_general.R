@@ -1,5 +1,5 @@
 #### This file conducts a Mixed Linear Model for a QTL sweep of the Drosophila genome.
-#### Inputs: commDir - the main directory where files are stored; 
+#### Inputs: commDir - the main directory where files are stored;
 ####         parameters.csv - main parameters for the code
 
 
@@ -68,33 +68,33 @@ if (phenotype == 'survival') {
   #  load("Transformed.Rda")
   #  surv.var <- fileArgs[which(fileArgs == 'survivalVarName')+2]
   #  y <- get(surv.var)
-  
+
   #  load(paste0(nullDir, "Null_", transform.type, "Trans", ".RData"))
   #} else {
   #  y <- dat$y
-  
+
   #  load(paste0(nullDir, "Null_", transform.type, "Trans", ".RData"))
   #}
-  
+
 } else if (phenotype == 'metabolite') {
   print("Running Metabolomic Data Analysis!!")
   metaboliteNum <- as.integer(args[9])
   metabDir <- args[10]
   y <- read.table(paste0(metabDir, "/artifactResiduals/residual", metaboliteNum, ".csv"), sep=",", header=T)
   y <- c(y)$x
-  
+
   load(paste0(nullDir, '/Null_', metaboliteNum, '.RData'))
-  
+
 } else if (phenotype == 'weight') {
   print("Loading Null Model Info!!")
   sqrtW <- sqrt(as.numeric(dat$number.weighed))
   y <- dat$y
-  
+
   load(paste0(nullDir, '/Null_', weight.sex, '_', 'Weight_', weight.type, '.RData'))
 } else if (phenotype == 'TG' | phenotype == 'trehalose') {
   print("Loading Null Model Info!!")
   y <- dat$y
-  
+
   load(paste0(as.character(nullDir), '/Null2.RData'))
 }
 print("Loaded in Null Model!!")
@@ -121,6 +121,7 @@ if(p != 0) {
   }
   LineM <- LM
   LineF <- LF
+  print( "Permutation Test Complete" )
 }
 
 
@@ -190,20 +191,20 @@ out <- cbind(do.call('rbind', LOD), t(sapply(LOD, LODp))) #Find associated p-val
 like.out <- do.call('rbind', all.lik)
 
 if (epistaticModel) {
-  colnames(out) <- c("LR - QTL 1", "LR - QTL 2", "LR - Inter", "LR - D-QTL1", "LR - D-QTL2", "LR - D-Inter", 
+  colnames(out) <- c("LR - QTL 1", "LR - QTL 2", "LR - Inter", "LR - D-QTL1", "LR - D-QTL2", "LR - D-Inter",
                      "DF - QTL 1", "DF - QTL 2", "DF - Inter", "DF - D-QTL1", "DF - D-QTL2", "DF - D-Inter",
-                     "P-Val - QTL1", "P-Val - QTL2", "P-Val - Inter", "P-Val - QTL", 
+                     "P-Val - QTL1", "P-Val - QTL2", "P-Val - Inter", "P-Val - QTL",
                      "P-Val - QTL1-D", "P-Val - QTL2-D", "P-Val - Inter-D", "P-Val - Diet")
-  
-  colnames(like.out) <- c('QTL1', 'QTL2', 'Log Like - QTL1', 'Log Like - QTL2', 'Log Like - Inter', 'Log Like - D-QTL1', 'Log Like - D-QTL2', 
+
+  colnames(like.out) <- c('QTL1', 'QTL2', 'Log Like - QTL1', 'Log Like - QTL2', 'Log Like - Inter', 'Log Like - D-QTL1', 'Log Like - D-QTL2',
                           'Log Like - D-Inter')
-  
+
 } else {
-  colnames(out) <- c("LR - Additive", "LR - Dominant", "LR - Full", "LR - D-Additive", "LR - D-Dominant", "LR - D-Full", 
+  colnames(out) <- c("LR - Additive", "LR - Dominant", "LR - Full", "LR - D-Additive", "LR - D-Dominant", "LR - D-Full",
                      "DF - Additive", "DF - Dominant", "DF - Full", "DF - D-Additive", "DF - D-Dominant", "DF - D-Full",
-                     "P-Val - Additive", "P-Val - Dominant", "P-Val - Full", "P-Val - Main", 
+                     "P-Val - Additive", "P-Val - Dominant", "P-Val - Full", "P-Val - Main",
                      "P-Val - Add-D", "P-Val - Dom-D", "P-Val - Full-D", "P-Val - Diet")
-  colnames(like.out) <- c("QTL1", "Log Like - Additive", "Log Like - Dominant", "Log Like - Full", 
+  colnames(like.out) <- c("QTL1", "Log Like - Additive", "Log Like - Dominant", "Log Like - Full",
                           "Log Like - D-Additive", "Log Like - D-Dominant", "Log Like - D-Full")
 }
 
@@ -217,7 +218,7 @@ if (epistaticModel) {
     write.table(like.out, file=paste0(outDir, '/logLike_', p, '_inter_', q, '.csv'), sep=',', row.names=F)
   }
 } else {
-  
+
   if (phenotype == 'metabolite') {
     write.table(out, file = paste0(outDir, '/p-value', metaboliteNum, '.csv'), sep = ',', row.names=F)
     write.table(like.out, file=paste0(outDir, '/logLike_', metaboliteNum, '.csv'), sep=',', row.names=F)
