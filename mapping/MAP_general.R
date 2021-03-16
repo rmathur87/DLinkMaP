@@ -13,7 +13,8 @@ commDir <- parameters[which(parameters[,1]=='commDir'), "Value"] #The directory 
 print(paste0("Comm Dir: ", commDir))
 setwd(as.character(commDir))
 set.seed(parameters[which(parameters[,1]=='seed'), "Value"]) #To ensure that results are replicable
-u <- round(runif(1000) * 2^31)
+# u <- round(runif(1000) * 2^31)
+u <- parameters[which(parameters[,1]=='seed'), "Value"]
 
 # Phenotype Parameters
 outDir <- parameters[which(parameters[,1]=='outDir'), "Value"] #Directory where results will be written to
@@ -109,7 +110,8 @@ LineF <- dat$female.line
 
 #Permutation Testing - p=0 is no permutation
 if(p != 0) {
-  set.seed(u[p])
+  # set.seed(u[p])
+  set.seed( u )
   LM <- LineM
   LF <- LineF
   cn <- unique(dat$cross.number)
