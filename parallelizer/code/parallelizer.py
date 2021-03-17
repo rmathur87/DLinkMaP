@@ -272,6 +272,7 @@ for i in range( n_runs ):
 	print()
 	print()
 
+os.system( "chmod +x script.sh" )
 
 print( "".center( 100, "=" ) )
 print( " FINISHED RUNNING ALL ".center( 100, "=" ) )
