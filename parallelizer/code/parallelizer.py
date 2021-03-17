@@ -214,6 +214,13 @@ for i in range( n_runs ):
 				]
 				add_line = " ".join( temp )
 			print( add_line, file=sfile )
+			print( "cd /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt".format( i+1 ) , file=sfile)
+			print( "cp ./logLike_Male_avgbyvial.csv temp-l.csv" , file=sfile)
+			print( "cat temp-l.csv | uniq > logLike_Male_avgbyvial.csv" , file=sfile)
+			print( "sleep 1" , file=sfile)
+			print( "cp ./p-value_Male_avgbyvial.csv temp-p.csv" , file=sfile)
+			print( "cat temp-p.csv | uniq > p-value_Male_avgbyvial.csv" , file=sfile)
+
 		# need to run uniq fromwithin the data to get uniqed lines
 		# print( "sleep 5" )
 		# print( "# uniqing multiple runs" )
