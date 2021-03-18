@@ -92,10 +92,10 @@ print()
 
 
 try:
-    shutil.rmtree( run_scripts_path )
+	shutil.rmtree( run_scripts_path )
 	time.sleep( 1 )
 except OSError as e:
-    print("Error: %s : %s" % (run_scripts_path, e.strerror))
+	print("Error: %s : %s" % (run_scripts_path, e.strerror))
 
 try:
 	os.mkdir( run_scripts_path )
