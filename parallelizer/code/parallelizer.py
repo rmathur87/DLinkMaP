@@ -207,7 +207,7 @@ for i in range( n_runs ):
 			add_line = line.strip()
 			if "source" in line:
 				print( "module purge", file=sfile )
-				print( "sleep 5", file=sfile )
+				print( "sleep 10", file=sfile )
 			if "Rscript" in line:
 				temp = [
 					line.split()[0],
@@ -218,7 +218,7 @@ for i in range( n_runs ):
 			print( add_line, file=sfile )
 
 		# need to run uniq fromwithin the data to get uniqed lines
-		print( "sleep 5", file=sfile )
+		print( "sleep 10", file=sfile )
 		print( "# uniqing multiple runs", file=sfile )
 		print( "cp /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv".format( i+1 ), file=sfile )
 		print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=sfile )
@@ -271,7 +271,20 @@ for i in range( n_runs ):
 	# print()
 	# print()
 
-os.system( "chmod +x /home/ualcpr/QTL/DLinkMaP/parallelizer/code/script.sh" )
+os.system( "chmod +x {0}".format( mini_script_path ) )
+
+lines_per_file = 500
+smallfile = None
+with open( mini_script_path, "r" ) as bigfile:
+	for lineno, line in enumerate(bigfile):
+		if lineno % lines_per_file == 0:
+			if smallfile:
+				smallfile.close()
+			small_filename = 'mini_script-{}.sh'.format(lineno + lines_per_file)
+			smallfile = open(small_filename, "w")
+		smallfile.write(line)
+	if smallfile:
+		smallfile.close()
 
 # print( "".center( 100, "=" ) )
 # print( " FINISHED RUNNING ALL ".center( 100, "=" ) )
