@@ -19,8 +19,6 @@ def split_pi( pi_file, n_runs ):
 	return( ret_lst_full[:n_runs] )
 
 
-# temp
-
 #
 #    ,,
 #    db                                                    mm
