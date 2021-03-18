@@ -39,7 +39,7 @@ import os
 import shutil
 import time
 from pathlib import Path 				# to import files
-from tqdm import tqdm as tqdm
+# from tqdm import tqdm as tqdm
 
 #
 #                                 ,,            ,,          ,,
@@ -107,8 +107,8 @@ except Exception as e:
 os.system( "rm {0}".format( mini_script_path ) )
 os.system( "touch {0}".format( mini_script_path ) )
 
-# for i in range( n_runs ):
-for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment this out if it does not work
+for i in range( n_runs ):
+# for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment this out if it does not work
 
 	# print( "SEED = {0} ".format( pi_seeds[i] ).ljust( 50, "=" ), end="" )
 	# print( " RUN {0:04}".format( i+1 ).rjust( 50, "=" ) )
@@ -122,7 +122,6 @@ for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment
 	except Exception as e:
 		print( "Could not create directory for run {:04}.".format( i+1 ) )
 		sys.exit()
-		continue
 
 	# print( "{:04} - Copying femaleWt ".format( i+1 ).ljust( 30, "." ), end = "" )
 	# shutil.copytree(
@@ -271,7 +270,7 @@ for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment
 		print( "cd /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{:04}".format( i+1 ), file=outfile )
 		print( "chmod +x perm{:04}_script.sh".format( i+1 ), file=outfile )
 		print( "run_script perm{:04}_script.sh".format( i+1 ), file=outfile )
-		print( "sleep 60", file=outfile )
+		print( "sleep 30", file=outfile )
 		print( file=outfile )
 
 	print( "{0:>03} / {1}".format( i+1, n_runs ).center( 100, " " ) )
