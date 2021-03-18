@@ -39,6 +39,7 @@ import os
 import shutil
 import time
 from pathlib import Path 				# to import files
+from tqdm import tqdm as tqdm
 
 #
 #                                 ,,            ,,          ,,
@@ -106,7 +107,8 @@ except Exception as e:
 os.system( "rm {0}".format( mini_script_path ) )
 os.system( "touch {0}".format( mini_script_path ) )
 
-for i in range( n_runs ):
+# for i in range( n_runs ):
+for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment this out if it does not work
 
 	print( "SEED = {0} ".format( pi_seeds[i] ).ljust( 50, "=" ), end="" )
 	print( " RUN {0:04}".format( i+1 ).rjust( 50, "=" ) )
@@ -122,29 +124,29 @@ for i in range( n_runs ):
 		sys.exit()
 		continue
 
-	print( "{:04} - Copying femaleWt ".format( i+1 ).ljust( 30, "." ), end = "" )
-	shutil.copytree(
-		"/home/ualcpr/QTL/DLinkMaP/results/femaleWt",
-		dir_name + "/femaleWt"
-	)
-	print( " DONE" )
-	time.sleep( 0.1 )
+	# print( "{:04} - Copying femaleWt ".format( i+1 ).ljust( 30, "." ), end = "" )
+	# shutil.copytree(
+	# 	"/home/ualcpr/QTL/DLinkMaP/results/femaleWt",
+	# 	dir_name + "/femaleWt"
+	# )
+	# print( " DONE" )
+	# time.sleep( 0.1 )
 
-	print( "{:04} - Copying maleWt ".format( i+1 ).ljust( 30, "." ), end = "" )
+	# print( "{:04} - Copying maleWt ".format( i+1 ).ljust( 30, "." ), end = "" )
 	shutil.copytree(
 		"/home/ualcpr/QTL/DLinkMaP/results/maleWt",
 		dir_name + "/maleWt"
 	)
-	print( " DONE" )
+	# print( " DONE" )
 	time.sleep( 0.1 )
 
-	print( "{:04} - Copying Trehalose ".format( i+1 ).ljust( 30, "." ), end = "" )
-	shutil.copytree(
-		"/home/ualcpr/QTL/DLinkMaP/results/Trehalose",
-		dir_name + "/Trehalose"
-	)
-	print( " DONE" )
-	time.sleep( 0.1 )
+	# print( "{:04} - Copying Trehalose ".format( i+1 ).ljust( 30, "." ), end = "" )
+	# shutil.copytree(
+	# 	"/home/ualcpr/QTL/DLinkMaP/results/Trehalose",
+	# 	dir_name + "/Trehalose"
+	# )
+	# print( " DONE" )
+	# time.sleep( 0.1 )
 
 	# copy parameters
 	params_file = Path( params_stock ).read_text().split("\n")
@@ -197,7 +199,7 @@ for i in range( n_runs ):
 				add_line = ",".join(temp_line)
 			print( add_line, file=pfile )
 	print( "params_{:04}.csv created".format(i+1).rjust( 60, "." ) )
-	time.sleep( 0.5 )
+	time.sleep( 0.1 )
 
 	# copy_shell
 	script_file = Path( script_stock ).read_text().split("\n")
@@ -217,12 +219,12 @@ for i in range( n_runs ):
 				]
 				add_line = " ".join( temp )
 			print( add_line, file=sfile )
-			print( "cd /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt".format( i+1 ) , file=sfile)
-			print( "cp ./logLike_Male_avgbyvial.csv temp-l.csv" , file=sfile)
-			print( "cat temp-l.csv | uniq > logLike_Male_avgbyvial.csv" , file=sfile)
-			print( "sleep 1" , file=sfile)
-			print( "cp ./p-value_Male_avgbyvial.csv temp-p.csv" , file=sfile)
-			print( "cat temp-p.csv | uniq > p-value_Male_avgbyvial.csv" , file=sfile)
+		print( "cd /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt".format( i+1 ) , file=sfile)
+		print( "cp ./logLike_Male_avgbyvial.csv temp-l.csv" , file=sfile)
+		print( "cat temp-l.csv | uniq > logLike_Male_avgbyvial.csv" , file=sfile)
+		print( "sleep 1" , file=sfile)
+		print( "cp ./p-value_Male_avgbyvial.csv temp-p.csv" , file=sfile)
+		print( "cat temp-p.csv | uniq > p-value_Male_avgbyvial.csv" , file=sfile)
 
 		# need to run uniq fromwithin the data to get uniqed lines
 		# print( "sleep 5" )
