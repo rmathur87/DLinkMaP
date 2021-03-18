@@ -93,11 +93,13 @@ print()
 
 try:
     shutil.rmtree( run_scripts_path )
+	time.sleep( 1 )
 except OSError as e:
     print("Error: %s : %s" % (run_scripts_path, e.strerror))
 
 try:
 	os.mkdir( run_scripts_path )
+	time.sleep( 1 )
 except Exception as e:
 	print( "Could not create {} directory.".format( run_scripts_path ) )
 
@@ -229,6 +231,7 @@ for i in range( n_runs ):
 		# print( "mv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv".format( i+1 ), file=sfile )
 		# print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=sfile )
 	print( "perm{:04}_script.sh created".format(i+1).rjust( 60, "." ) )
+	time.sleep( 2 )
 
 	# os.system( "pwd" )
 	# os.system( "ls -ltrh" )
