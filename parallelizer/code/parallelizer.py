@@ -51,7 +51,7 @@ from pathlib import Path 				# to import files
 #
 
 # n_runs = 1000
-n_runs = 12
+n_runs = 1
 run_scripts_path = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
 mini_script_path = "/home/ualcpr/QTL/DLinkMaP/parallelizer/code/script.sh"
 
