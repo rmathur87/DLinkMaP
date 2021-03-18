@@ -86,10 +86,10 @@ script_stock = "/home/ualcpr/QTL/DLinkMaP/parallelizer/stock_data/script_example
 
 pi_seeds = split_pi( pi_file, n_runs )
 
-print( "".center( 100, "=" ) )
-print( " BEGINNING RUN FOR {:04} RUNS ".format( n_runs ).center( 100, "=" ) )
-print( "".center( 100, "=" ) )
-print()
+# print( "".center( 100, "=" ) )
+# print( " BEGINNING RUN FOR {:04} RUNS ".format( n_runs ).center( 100, "=" ) )
+# print( "".center( 100, "=" ) )
+# print()
 
 
 try:
@@ -100,9 +100,9 @@ except OSError as e:
 
 try:
 	os.mkdir( run_scripts_path )
-	time.sleep( 1 )
 except Exception as e:
-	print( "Could not create {} directory.".format( run_scripts_path ) )
+	print( e )
+	sys.exit( "Could not create {} directory.".format( run_scripts_path ) )
 
 os.system( "rm {0}".format( mini_script_path ) )
 os.system( "touch {0}".format( mini_script_path ) )
@@ -274,15 +274,17 @@ for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment
 		print( "sleep 60", file=outfile )
 		print( file=outfile )
 
-	print()
-	print()
-	print()
+	print( "{0:>03} / {1}".format( i+1, n_runs ).center( 100, " " ) )
+
+	# print()
+	# print()
+	# print()
 
 os.system( "chmod +x /home/ualcpr/QTL/DLinkMaP/parallelizer/code/script.sh" )
 
-print( "".center( 100, "=" ) )
-print( " FINISHED RUNNING ALL ".center( 100, "=" ) )
-print( "".center( 100, "=" ) )
+# print( "".center( 100, "=" ) )
+# print( " FINISHED RUNNING ALL ".center( 100, "=" ) )
+# print( "".center( 100, "=" ) )
 
 # os.system( "tree ../" )
 # sys.exit( "Creation" )
