@@ -110,8 +110,8 @@ os.system( "touch {0}".format( mini_script_path ) )
 # for i in range( n_runs ):
 for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment this out if it does not work
 
-	print( "SEED = {0} ".format( pi_seeds[i] ).ljust( 50, "=" ), end="" )
-	print( " RUN {0:04}".format( i+1 ).rjust( 50, "=" ) )
+	# print( "SEED = {0} ".format( pi_seeds[i] ).ljust( 50, "=" ), end="" )
+	# print( " RUN {0:04}".format( i+1 ).rjust( 50, "=" ) )
 
 	# print( "Run {0:04}\tSeed = {1}".format( i+1, pi_seeds[i] ) )
 
@@ -198,7 +198,7 @@ for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment
 				]
 				add_line = ",".join(temp_line)
 			print( add_line, file=pfile )
-	print( "params_{:04}.csv created".format(i+1).rjust( 60, "." ) )
+	# print( "params_{:04}.csv created".format(i+1).rjust( 60, "." ) )
 	time.sleep( 0.1 )
 
 	# copy_shell
@@ -233,7 +233,7 @@ for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment
 		# print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=sfile )
 		# print( "mv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv".format( i+1 ), file=sfile )
 		# print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=sfile )
-	print( "perm{:04}_script.sh created".format(i+1).rjust( 60, "." ) )
+	# print( "perm{:04}_script.sh created".format(i+1).rjust( 60, "." ) )
 	time.sleep( 0.1 ) # just in case we need it
 
 	# os.system( "pwd" )
