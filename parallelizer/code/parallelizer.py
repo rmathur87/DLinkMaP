@@ -216,20 +216,14 @@ for i in range( n_runs ):
 				]
 				add_line = " ".join( temp )
 			print( add_line, file=sfile )
-		print( "cd /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt".format( i+1 ) , file=sfile )
-		print( "cp ./logLike_Male_avgbyvial.csv temp-l.csv" , file=sfile )
-		print( "cat temp-l.csv | uniq > logLike_Male_avgbyvial.csv" , file=sfile )
-		print( "sleep 1" , file=sfile )
-		print( "cp ./p-value_Male_avgbyvial.csv temp-p.csv" , file=sfile )
-		print( "cat temp-p.csv | uniq > p-value_Male_avgbyvial.csv" , file=sfile )
 
 		# need to run uniq fromwithin the data to get uniqed lines
-		# print( "sleep 5" )
-		# print( "# uniqing multiple runs" )
-		# print( "mv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv".format( i+1 ), file=sfile )
-		# print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=sfile )
-		# print( "mv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv".format( i+1 ), file=sfile )
-		# print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=sfile )
+		print( "sleep 5" )
+		print( "# uniqing multiple runs" )
+		print( "cp /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv".format( i+1 ), file=sfile )
+		print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=sfile )
+		print( "cp /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv".format( i+1 ), file=sfile )
+		print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=sfile )
 	# print( "perm{:04}_script.sh created".format(i+1).rjust( 60, "." ) )
 	time.sleep( 0.1 ) # just in case we need it
 
