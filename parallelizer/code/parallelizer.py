@@ -51,8 +51,8 @@ from pathlib import Path 				# to import files
 #       W     `Moo9^Yo..JMML.   .JMML.`Moo9^Yo. P^YbmdP'  .JMML. `Mbmmd' M9mmmP'
 #
 
-# n_runs = 1000
-n_runs = 12
+n_runs = 1000
+# n_runs = 12
 run_scripts_path = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
 mini_script_path = "/home/ualcpr/QTL/DLinkMaP/parallelizer/code/script.sh"
 
@@ -119,6 +119,7 @@ for i in range( n_runs ):
 		os.mkdir( dir_name )
 	except Exception as e:
 		print( "Could not create directory for run {:04}.".format( i+1 ) )
+		sys.exit()
 		continue
 
 	print( "{:04} - Copying femaleWt ".format( i+1 ).ljust( 30, "." ), end = "" )
@@ -231,7 +232,7 @@ for i in range( n_runs ):
 		# print( "mv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv".format( i+1 ), file=sfile )
 		# print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=sfile )
 	print( "perm{:04}_script.sh created".format(i+1).rjust( 60, "." ) )
-	time.sleep( 2 )
+	time.sleep( 0.1 ) # just in case we need it
 
 	# os.system( "pwd" )
 	# os.system( "ls -ltrh" )
