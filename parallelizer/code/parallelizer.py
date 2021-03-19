@@ -200,7 +200,7 @@ for i in range( n_runs ):
 
 	# copy_shell
 	script_file = Path( script_stock ).read_text().split("\n")
-	script_file_for_run = dir_name + "/perm{:04}_script.sh".format(i+1)
+	script_file_for_run = dir_name + "/perm{:04}.sh".format(i+1)
 
 	with open( script_file_for_run, "w" ) as sfile:
 		for line in script_file:
@@ -224,7 +224,7 @@ for i in range( n_runs ):
 		print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=sfile )
 		print( "cp /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv".format( i+1 ), file=sfile )
 		print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=sfile )
-	# print( "perm{:04}_script.sh created".format(i+1).rjust( 60, "." ) )
+	# print( "perm{:04}.sh created".format(i+1).rjust( 60, "." ) )
 	time.sleep( 0.1 ) # just in case we need it
 
 	# os.system( "pwd" )
@@ -241,11 +241,11 @@ for i in range( n_runs ):
 	# os.system( "ls -ltrh" )
 	#
 	# print( "Assigning Run Permission. Sleep 1".rjust( 90, "." ) )
-	# os.system( "chmod +x perm{:04}_script.sh".format( i+1 ) )
+	# os.system( "chmod +x perm{:04}.sh".format( i+1 ) )
 	# time.sleep( 1 )
 	#
 	# print( "Attempting Run".rjust( 90, "." ) )
-	# run_command = "run_script perm{:04}_script.sh".format( i+1 )
+	# run_command = "run_script perm{:04}.sh".format( i+1 )
 	# print( "Running: ", run_command )
 	# os.system( run_command )
 	# print( "Finished Running. Sleep 5".rjust( 90, "." ) )
@@ -260,8 +260,8 @@ for i in range( n_runs ):
 
 	with open( mini_script_path, "a" ) as outfile:
 		print( "cd /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{:04}".format( i+1 ), file=outfile )
-		print( "chmod +x perm{:04}_script.sh".format( i+1 ), file=outfile )
-		print( "run_script perm{:04}_script.sh".format( i+1 ), file=outfile )
+		print( "chmod +x perm{:04}.sh".format( i+1 ), file=outfile )
+		print( "run_script perm{:04}.sh".format( i+1 ), file=outfile )
 		print( "sleep 10", file=outfile )
 		print( file=outfile )
 
