@@ -105,8 +105,8 @@ except Exception as e:
 os.system( "rm {0}".format( mini_script_path ) )
 os.system( "touch {0}".format( mini_script_path ) )
 
-# for i in range( n_runs ):
-for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment this out if it does not work
+for i in range( n_runs ):
+# for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment this out if it does not work
 
 	# print( "SEED = {0} ".format( pi_seeds[i] ).ljust( 50, "=" ), end="" )
 	# print( " RUN {0:04}".format( i+1 ).rjust( 50, "=" ) )
@@ -265,7 +265,7 @@ for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment
 		print( "sleep 10", file=outfile )
 		print( file=outfile )
 
-	# print( "{0:>03} / {1}".format( i+1, n_runs ).center( 100, " " ), end="\r" ) # remove if enabling tqdm
+	print( "{0:>03} / {1}".format( i+1, n_runs ).center( 100, " " ), end="\r" ) # remove if enabling tqdm
 
 	# print()
 	# print()
@@ -273,18 +273,19 @@ for i in tqdm(range( n_runs ), ascii=True, desc="Creating Run Files"): # comment
 
 os.system( "chmod +x {0}".format( mini_script_path ) )
 
-lines_per_file = 500
-smallfile = None
-with open( mini_script_path, "r" ) as bigfile:
-	for lineno, line in enumerate(bigfile):
-		if lineno % lines_per_file == 0:
-			if smallfile:
-				smallfile.close()
-			small_filename = 'mini_script-{}.sh'.format(lineno + lines_per_file)
-			smallfile = open(small_filename, "w")
-		smallfile.write(line)
-	if smallfile:
-		smallfile.close()
+# # to split bash file
+# lines_per_file = 500
+# smallfile = None
+# with open( mini_script_path, "r" ) as bigfile:
+# 	for lineno, line in enumerate(bigfile):
+# 		if lineno % lines_per_file == 0:
+# 			if smallfile:
+# 				smallfile.close()
+# 			small_filename = 'mini_script-{}.sh'.format(lineno + lines_per_file)
+# 			smallfile = open(small_filename, "w")
+# 		smallfile.write(line)
+# 	if smallfile:
+# 		smallfile.close()
 
 # print( "".center( 100, "=" ) )
 # print( " FINISHED RUNNING ALL ".center( 100, "=" ) )
