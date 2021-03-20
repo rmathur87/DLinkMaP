@@ -203,19 +203,19 @@ for i in range( n_runs ):
 	script_file_for_run = dir_name + "/perm{:04}.sh".format(i+1)
 
 	with open( script_file_for_run, "w" ) as sfile:
-		for line in script_file:
-			add_line = line.strip()
-			if "source" in line:
-				print( "module purge", file=sfile )
-				print( "sleep 10", file=sfile )
-			if "Rscript" in line:
-				temp = [
-					line.split()[0],
-					line.split()[1],
-					"/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/params_{0:04}.csv".format( i+1 )
-				]
-				add_line = " ".join( temp )
-			print( add_line, file=sfile )
+
+		print( "#!/bin/bash", file=sfile )
+		print( file=sfile )
+		print( "# load R", file=sfile )
+		print( "module purge", file=sfile )
+		print( "sleep 5", file=sfile )
+		print( "source /opt/asn/etc/asn-bash-profiles-special/modules.sh", file=sfile )
+		print( "sleep 5", file=sfile )
+		print( "module load R/4.0.2", file=sfile )
+		print( "sleep 5", file=sfile )
+		print( file=sfile )
+		print( "# R CMD INSTALL ~/QTL/DLinkMap/DSPRqtl_2.0-5.tar.gz", file=sfile )
+		print( "Rscript ~/QTL/DLinkMaP/mapping/MAP_general.R /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/params_{0:04}.csv".format( i+1 ), file=sfile )
 
 		# need to run uniq fromwithin the data to get uniqed lines
 		print( "sleep 10", file=sfile )
