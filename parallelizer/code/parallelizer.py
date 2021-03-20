@@ -265,7 +265,7 @@ for i in range( n_runs ):
 		print( "sleep 10", file=outfile )
 		print( file=outfile )
 
-	print( "{0:>03} / {1}".format( i+1, n_runs ).center( 100, " " ), end="\r" ) # remove if enabling tqdm
+	print( "{0:>04} / {1}".format( i+1, n_runs ).center( 100, " " ), end="\r" ) # remove if enabling tqdm
 
 	# print()
 	# print()
