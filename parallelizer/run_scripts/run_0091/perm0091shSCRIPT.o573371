@@ -1,0 +1,41 @@
+setting dmc scratch directory
+ 
+============================================================
+=====         Summary of your script job               =====
+============================================================
+  The script file is: perm0091.sh
+  The time limit is 150:00:00 HH:MM:SS.
+  The target directory is: /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_0091
+  The working directory is:  /scratch-local/ualcpr.perm0091shSCRIPT.573371
+  The memory limit is: 4gb
+  The job will start running after: 2021-03-20T14:23:32
+  Job Name: perm0091shSCRIPT
+  Virtual queue: medium
+  QOS: --qos=medium
+  Constraints: --constraint=dmc
+  Using  2  cores on master node  dmc40
+  Node list:  dmc40
+  Nodes:  dmc40 dmc40
+  Command typed:
+/apps/scripts/run_script perm0091.sh     
+  Queue submit command:
+sbatch --qos=medium -J perm0091shSCRIPT --begin=2021-03-20T14:23:32 --requeue --mail-user=cprele@ua.edu -o perm0091shSCRIPT.o573371 -t 150:00:00 -N 1-1 -n 2 --mem-per-cpu=2000 --constraint=dmc 
+Lmod has detected the following error: Unable to load module because of error
+when evaluating modulefile:
+     /opt/asn/etc/modulefiles/gdal/2.4.0.lua:
+/apps/dmc/apps/lmod_rhel/lmod/lmod/libexec/SitePackage.lua:119: LuaSQL: SQL
+logic error or missing database
+     Please check the modulefile and especially if there is a the line number
+specified in the above message 
+While processing the following module(s):
+    Module fullname  Module Filename
+    ---------------  ---------------
+    proj/5.0.1       /opt/asn/etc/modulefiles/proj/5.0.1.lua
+    gdal/2.4.0       /opt/asn/etc/modulefiles/gdal/2.4.0.lua
+    R/4.0.2          /opt/asn/etc/modulefiles/R/4.0.2.lua
+
+./perm0091.sh: line 12: Rscript: command not found
+cp: cannot stat ‘/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_0091/maleWt/p-value_Male_avgbyvial.csv’: No such file or directory
+cat: /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_0091/maleWt/temp-pval.csv: No such file or directory
+cp: cannot stat ‘/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_0091/maleWt/logLike_Male_avgbyvial.csv’: No such file or directory
+cat: /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_0091/maleWt/temp-log_like.csv: No such file or directory
