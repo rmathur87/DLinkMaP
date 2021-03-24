@@ -66,9 +66,3 @@ with open( rerun_script, "w" ) as scfile:
 		print( "run_script perm{0}.sh".format( run ), file=scfile )
 		print( "sleep 10".format( run ), file=scfile )
 		print( file=scfile )
-# for item in not_run:
-
-# cd /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_0201
-# chmod +x perm0201.sh
-# run_script perm0201.sh
-# sleep 10
