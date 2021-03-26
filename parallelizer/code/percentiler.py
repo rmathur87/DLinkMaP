@@ -12,8 +12,8 @@ import math
 
 
 ### variables ==================================================================
-pval_dir = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/p-vals"
-pval_ptile_dir = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/percentile_data"
+pval_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/p-vals"
+pval_ptile_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/percentile_data"
 pval_ptile_0 = "{0}/{1}".format( pval_ptile_dir, "pval_ptile_0.csv" )
 pval_ptile_5 = "{0}/{1}".format( pval_ptile_dir, "pval_ptile_5.csv" )
 
@@ -125,7 +125,7 @@ with open( pval_ptile_0, "w" ) as file0, open( pval_ptile_5, "w" ) as file5:
 
 
 
-# file = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/p-vals/male_pval_0001.csv"
+# file = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/p-vals/male_pval_0001.csv"
 # opened_csv_file = open(file, 'r')
 # reader = csv.reader(opened_csv_file)
 #

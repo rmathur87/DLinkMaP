@@ -14,9 +14,9 @@ import shutil
 
 ### variables ==================================================================
 
-run_directory = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/run_scripts"
-loglike_dir = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/logLike"
-pval_dir = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/p-vals"
+run_directory = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
+loglike_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/logLike"
+pval_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/p-vals"
 
 ### functions ==================================================================
 
@@ -60,11 +60,11 @@ for dir in run_dirs:
 
 for run in finished_runs:
 	# copy p-val file
-	pval_src = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/run_scripts/run_{0}/maleWt/p-value_Male_avgbyvial.csv".format( run )
-	pval_dst = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/p-vals/male_pval_{0}.csv".format( run )
+	pval_src = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}/maleWt/p-value_Male_avgbyvial.csv".format( run )
+	pval_dst = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/p-vals/male_pval_{0}.csv".format( run )
 	shutil.copyfile( pval_src, pval_dst )
 
 	# copy logLike file
-	logLike_src = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/run_scripts/run_{0}/maleWt/logLike_Male_avgbyvial.csv".format( run )
-	logLike_dst = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/logLike/male_logLike_{0}.csv".format( run )
+	logLike_src = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}/maleWt/logLike_Male_avgbyvial.csv".format( run )
+	logLike_dst = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/logLike/male_logLike_{0}.csv".format( run )
 	shutil.copyfile( logLike_src, logLike_dst )

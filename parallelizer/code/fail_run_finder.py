@@ -14,8 +14,8 @@ import glob
 
 ### variables ==================================================================
 
-run_directory = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/run_scripts"
-rerun_script = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/code/rerun.sh"
+run_directory = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
+rerun_script = "/home/ualcpr/QTL/DLinkMaP/parallelizer/code/rerun.sh"
 
 ### functions ==================================================================
 
