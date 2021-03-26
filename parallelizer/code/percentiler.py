@@ -35,7 +35,7 @@ def dir_getter( path, out_type="full" ):
 	elif out_type == "full":
 		return( full_paths )
 
-### code ==================================================================""
+### code ==================================================================
 
 
 pval_files = dir_getter( pval_dir )
@@ -54,8 +54,8 @@ header_row = [
 ]
 
 with open( pval_ptile_0, "w" ) as file0, open( pval_ptile_5, "w" ) as file5:
-	print( "\t".join( header_row ), file=file0 )
-	print( "\t".join( header_row ), file=file5 )
+	print( ",".join( header_row ), file=file0 )
+	print( ",".join( header_row ), file=file5 )
 
 	for pval_file in pval_files:
 
@@ -89,6 +89,15 @@ with open( pval_ptile_0, "w" ) as file0, open( pval_ptile_5, "w" ) as file5:
 				pval_diet.append( row[-1] )
 		open_file.close()
 
+		pval_add = [ float(item) for item in pval_add if item != "NA" ]
+		pval_dom = [ float(item) for item in pval_dom if item != "NA" ]
+		pval_full = [ float(item) for item in pval_full if item != "NA" ]
+		pval_main = [ float(item) for item in pval_main if item != "NA" ]
+		pval_addD = [ float(item) for item in pval_addD if item != "NA" ]
+		pval_domD = [ float(item) for item in pval_domD if item != "NA" ]
+		pval_fullD = [ float(item) for item in pval_fullD if item != "NA" ]
+		pval_diet = [ float(item) for item in pval_diet if item != "NA" ]
+
 		pval_add.sort()
 		pval_dom.sort()
 		pval_full.sort()
@@ -100,28 +109,28 @@ with open( pval_ptile_0, "w" ) as file0, open( pval_ptile_5, "w" ) as file5:
 
 		ptile_5_index = math.floor( len( pval_add )*95 / 100 )
 
-		to_print_file0.append( pval_add[-1] )
-		to_print_file0.append( pval_dom[-1] )
-		to_print_file0.append( pval_full[-1] )
-		to_print_file0.append( pval_main[-1] )
-		to_print_file0.append( pval_addD[-1] )
-		to_print_file0.append( pval_domD[-1] )
-		to_print_file0.append( pval_fullD[-1] )
-		to_print_file0.append( pval_diet[-1] )
+		to_print_file0.append( str(pval_add[-1]) )
+		to_print_file0.append( str(pval_dom[-1]) )
+		to_print_file0.append( str(pval_full[-1]) )
+		to_print_file0.append( str(pval_main[-1]) )
+		to_print_file0.append( str(pval_addD[-1]) )
+		to_print_file0.append( str(pval_domD[-1]) )
+		to_print_file0.append( str(pval_fullD[-1]) )
+		to_print_file0.append( str(pval_diet[-1]) )
 
-		to_print_file5.append( pval_add[ptile_5_index] )
-		to_print_file5.append( pval_dom[ptile_5_index] )
-		to_print_file5.append( pval_full[ptile_5_index] )
-		to_print_file5.append( pval_main[ptile_5_index] )
-		to_print_file5.append( pval_addD[ptile_5_index] )
-		to_print_file5.append( pval_domD[ptile_5_index] )
-		to_print_file5.append( pval_fullD[ptile_5_index] )
-		to_print_file5.append( pval_diet[ptile_5_index] )
+		to_print_file5.append( str(pval_add[ptile_5_index]) )
+		to_print_file5.append( str(pval_dom[ptile_5_index]) )
+		to_print_file5.append( str(pval_full[ptile_5_index]) )
+		to_print_file5.append( str(pval_main[ptile_5_index]) )
+		to_print_file5.append( str(pval_addD[ptile_5_index]) )
+		to_print_file5.append( str(pval_domD[ptile_5_index]) )
+		to_print_file5.append( str(pval_fullD[ptile_5_index]) )
+		to_print_file5.append( str(pval_diet[ptile_5_index]) )
 
 		print( "{0:>04} / {1:>04}".format( pval_files.index( pval_file )+1, len( pval_files ) ).center( 100, " " ), end="\r" ) # remove if enabling tqdm
 
-		print( "\t".join( to_print_file0 ), file=file0 )
-		print( "\t".join( to_print_file5 ), file=file5 )
+		print( ",".join( to_print_file0 ), file=file0 )
+		print( ",".join( to_print_file5 ), file=file5 )
 
 
 
