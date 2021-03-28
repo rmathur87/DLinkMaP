@@ -70,7 +70,7 @@ with open( rerun_script, "w" ) as scfile:
 
 with open( scratch_copy, "w" ) as scratch_file:
 	print( "# to copy uncompleted models from home to scratch", file=scratch_file )
-	print( "# copying models: {0}".format( "\t".join(not_run) ), file=scfile )
+	print( "# copying models: {0}".format( "\t".join(not_run) ), file=scratch_file )
 	print( file=scratch_file )
 	for run in not_run:
 		home_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
