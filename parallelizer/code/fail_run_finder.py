@@ -76,6 +76,6 @@ with open( scratch_copy, "w" ) as scratch_file:
 		home_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
 		scratch_dir = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
 
-		print( "cp {0} {1}".format( home_dir, scratch_dir ), file=scratch_file )
+		print( "cp -r {0} {1}".format( home_dir, scratch_dir ), file=scratch_file )
 		print( "sleep 1", file=scratch_file )
 		print( file=scratch_file )
