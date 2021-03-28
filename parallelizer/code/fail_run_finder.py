@@ -16,6 +16,7 @@ import glob
 
 run_directory = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
 rerun_script = "/home/ualcpr/QTL/DLinkMaP/parallelizer/code/rerun.sh"
+scratch_copy = "/home/ualcpr/QTL/DLinkMaP/parallelizer/code/copy_to_scratch.sh"
 
 ### functions ==================================================================
 
@@ -66,3 +67,13 @@ with open( rerun_script, "w" ) as scfile:
 		print( "run_script perm{0}.sh".format( run ), file=scfile )
 		print( "sleep 10".format( run ), file=scfile )
 		print( file=scfile )
+
+with open( scratch_copy, "w" ) as scratch_file:
+	print( "# to copy uncompleted models from home to scratch", file=scratch_file )
+	print( "# copying models: {0}".format( "\t".join(not_run) ), file=scfile )
+	print( file=scratch_file )
+	for run in not_run:
+		home_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
+		scratch_dir = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
+		print( , file=scratch_file )
+		print( file=scratch_file )

@@ -1,3 +1,2 @@
 # not pushing same data files that were needed to run the script
 parallelizer/run_scripts/*/*/*.RData
-parallelizer/run_scripts

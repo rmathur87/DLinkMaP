@@ -11,6 +11,7 @@ from pprint import pprint as pprint
 import os
 import glob
 import shutil
+import time
 
 ### variables ==================================================================
 
@@ -59,6 +60,13 @@ for dir in run_dirs:
 # copy files
 
 for run in finished_runs:
+
+	scratch_dir = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
+	home_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
+
+	shutil.copytree( scratch_dir, home_dir )
+	time.sleep( 1 )
+
 	# copy p-val file
 	pval_src = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}/maleWt/p-value_Male_avgbyvial.csv".format( run )
 	pval_dst = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/p-vals/male_pval_{0}.csv".format( run )
@@ -68,3 +76,5 @@ for run in finished_runs:
 	logLike_src = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}/maleWt/logLike_Male_avgbyvial.csv".format( run )
 	logLike_dst = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/logLike/male_logLike_{0}.csv".format( run )
 	shutil.copyfile( logLike_src, logLike_dst )
+
+	print( "Finished copying run_{0}: {1:04}/{2:04}".format( run, finished_runs.index( run ), len( finished_runs ) ), end="\r" )
