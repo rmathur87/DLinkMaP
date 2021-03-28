@@ -60,7 +60,7 @@ with open( rerun_script, "w" ) as scfile:
 	print( "# Models not/failed to run: {0}".format( "\t".join(not_run) ), file=scfile )
 	print( file=scfile )
 	for run in not_run:
-		print( "cd /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run ), file=scfile )
+		print( "cd /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run ), file=scfile )
 		print( "rm perm{0}shSCRIPT.*".format( run ), file=scfile )
 		print( "rm maleWt/*.csv".format( run ), file=scfile )
 		print( "chmod +x perm{0}.sh".format( run ), file=scfile )
@@ -75,5 +75,7 @@ with open( scratch_copy, "w" ) as scratch_file:
 	for run in not_run:
 		home_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
 		scratch_dir = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
-		print( , file=scratch_file )
+
+		print( "cp {0} {1}".format( home_dir, scratch_dir ), file=scratch_file )
+		print( "sleep 1", file=scratch_file )
 		print( file=scratch_file )
