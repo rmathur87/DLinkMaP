@@ -56,6 +56,9 @@ for dir in run_dirs:
 	if total_file_size != 0:
 		finished_runs.append( dir[-4:] )
 
+	print( "        Checking run_{0}: {1:04}/{2:04}".format( dir[-4:], run_dirs.index( dir ), len( run_dirs ) ), end="\r" )
+
+print()
 
 # copy files
 
