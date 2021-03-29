@@ -15,7 +15,7 @@ import glob
 ### variables ==================================================================
 
 run_directory = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
-rerun_script = "/home/ualcpr/QTL/DLinkMaP/parallelizer/code/rerun.sh"
+rerun_script = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/code/rerun.sh"
 scratch_copy = "/home/ualcpr/QTL/DLinkMaP/parallelizer/code/copy_to_scratch.sh"
 
 ### functions ==================================================================
