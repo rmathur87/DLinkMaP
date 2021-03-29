@@ -26,3 +26,10 @@ This folder parallelizes the script.
 ### `percentiler.py`
 
 - Finds the 100th percentile and 95th percentile p-values are creates the data in the `percentile_data` directory.
+
+
+## Run in following order:
+1. HOME: fail_run_finder
+2. HOME: copy_to_scratch.sh
+3. HOME: rerun.sh
+4. HOME: data_copy

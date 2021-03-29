@@ -15,7 +15,7 @@ import time
 
 ### variables ==================================================================
 
-run_directory = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
+run_directory = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
 loglike_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/logLike"
 pval_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/p-vals"
 
@@ -63,6 +63,9 @@ for run in finished_runs:
 
 	scratch_dir = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
 	home_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
+
+	if os.path.exists( home_dir ):
+		shutil.rmtree( home_dir )
 
 	shutil.copytree( scratch_dir, home_dir )
 	time.sleep( 1 )
