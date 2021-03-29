@@ -60,11 +60,14 @@ with open( rerun_script, "w" ) as scfile:
 	print( "# Models not/failed to run: {0}".format( "\t".join(not_run) ), file=scfile )
 	print( file=scfile )
 	for run in not_run:
+
+
+
 		print( "cd /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run ), file=scfile )
 		print( "rm perm{0}shSCRIPT.*".format( run ), file=scfile )
 		print( "rm maleWt/*.csv".format( run ), file=scfile )
-		print( "mv perm{0}.sh temp.sh".format( run ), file=scfile )
-		print( "sed 's/home/scratch/g' temp.sh > perm{0}.sh".format( run ), file=scfile )
+		# print( "mv perm{0}.sh temp.sh".format( run ), file=scfile )
+		# print( "sed 's/home/scratch/g' temp.sh > perm{0}.sh".format( run ), file=scfile )
 		print( "chmod +x perm{0}.sh".format( run ), file=scfile )
 		print( "run_script perm{0}.sh".format( run ), file=scfile )
 		print( "sleep 10".format( run ), file=scfile )
