@@ -52,8 +52,8 @@ from pathlib import Path 				# to import files
 
 n_runs = 1000
 # n_runs = 1
-run_scripts_path = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
-mini_script_path = "/home/ualcpr/QTL/DLinkMaP/parallelizer/code/script.sh"
+run_scripts_path = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
+mini_script_path = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/code/script.sh"
 
 #         ,,
 #       `7MM             mm
@@ -65,10 +65,10 @@ mini_script_path = "/home/ualcpr/QTL/DLinkMaP/parallelizer/code/script.sh"
 #   `Wbmd"MML.`Moo9^Yo.  `Mbmo `Moo9^Yo.
 #
 
-pi_file = "/home/ualcpr/QTL/DLinkMaP/parallelizer/stock_data/pi.digits"
+pi_file = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/stock_data/pi.digits"
 # pi_file = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/stock_data/pi.digits"
-params_stock = "/home/ualcpr/QTL/DLinkMaP/parallelizer/stock_data/parameters.csv"
-script_stock = "/home/ualcpr/QTL/DLinkMaP/parallelizer/stock_data/script_example.sh"
+params_stock = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/stock_data/parameters.csv"
+script_stock = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/stock_data/script_example.sh"
 
 #
 #                            ,,
@@ -123,7 +123,7 @@ for i in range( n_runs ):
 
 	# print( "{:04} - Copying femaleWt ".format( i+1 ).ljust( 30, "." ), end = "" )
 	# shutil.copytree(
-	# 	"/home/ualcpr/QTL/DLinkMaP/results/femaleWt",
+	# 	"/scratch/ualcpr/QTL/DLinkMaP/results/femaleWt",
 	# 	dir_name + "/femaleWt"
 	# )
 	# print( " DONE" )
@@ -131,7 +131,7 @@ for i in range( n_runs ):
 
 	# print( "{:04} - Copying maleWt ".format( i+1 ).ljust( 30, "." ), end = "" )
 	shutil.copytree(
-		"/home/ualcpr/QTL/DLinkMaP/results/maleWt",
+		"/scratch/ualcpr/QTL/DLinkMaP/results/maleWt",
 		dir_name + "/maleWt"
 	)
 	# print( " DONE" )
@@ -139,7 +139,7 @@ for i in range( n_runs ):
 
 	# print( "{:04} - Copying Trehalose ".format( i+1 ).ljust( 30, "." ), end = "" )
 	# shutil.copytree(
-	# 	"/home/ualcpr/QTL/DLinkMaP/results/Trehalose",
+	# 	"/scratch/ualcpr/QTL/DLinkMaP/results/Trehalose",
 	# 	dir_name + "/Trehalose"
 	# )
 	# print( " DONE" )
@@ -170,28 +170,28 @@ for i in range( n_runs ):
 				temp_line = [
 					line.split(",")[0],
 					line.split(",")[1],
-					"/home/ualcpr/QTL/DLinkMaP/mapping/"
+					"/scratch/ualcpr/QTL/DLinkMaP/mapping/"
 				]
 				add_line = ",".join(temp_line)
 			if line.split(",")[0] == "nullDir":
 				temp_line = [
 					line.split(",")[0],
 					line.split(",")[1],
-					"/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{:04}/maleWt".format( i+1 )
+					"/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{:04}/maleWt".format( i+1 )
 				]
 				add_line = ",".join(temp_line)
 			if line.split(",")[0] == "outDir":
 				temp_line = [
 					line.split(",")[0],
 					line.split(",")[1],
-					"/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{:04}/maleWt".format( i+1 )
+					"/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{:04}/maleWt".format( i+1 )
 				]
 				add_line = ",".join(temp_line)
 			if line.split(",")[0] == "fileName":
 				temp_line = [
 					line.split(",")[0],
 					line.split(",")[1],
-					"/home/ualcpr/QTL/DLinkMaP/phenotypes/MaleWt/male_Weight_Formatted_AvgByVial.txt"
+					"/scratch/ualcpr/QTL/DLinkMaP/phenotypes/MaleWt/male_Weight_Formatted_AvgByVial.txt"
 				]
 				add_line = ",".join(temp_line)
 			print( add_line, file=pfile )
@@ -215,17 +215,17 @@ for i in range( n_runs ):
 		print( "sleep 5", file=sfile )
 		print( file=sfile )
 		print( "# R CMD INSTALL ~/QTL/DLinkMap/DSPRqtl_2.0-5.tar.gz", file=sfile )
-		print( "Rscript ~/QTL/DLinkMaP/mapping/MAP_general.R /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/params_{0:04}.csv".format( i+1 ), file=sfile )
+		print( "Rscript ~/QTL/DLinkMaP/mapping/MAP_general.R /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/params_{0:04}.csv".format( i+1 ), file=sfile )
 		print( file=sfile )
 		print( file=sfile )
 
 		# need to run uniq fromwithin the data to get uniqed lines
 		print( "sleep 10", file=sfile )
 		print( "# uniqing multiple runs", file=sfile )
-		print( "cp /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv".format( i+1 ), file=sfile )
-		print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=sfile )
-		print( "cp /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv".format( i+1 ), file=sfile )
-		print( "cat /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv | uniq > /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=sfile )
+		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv".format( i+1 ), file=sfile )
+		print( "cat /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv | uniq > /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=sfile )
+		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv".format( i+1 ), file=sfile )
+		print( "cat /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv | uniq > /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=sfile )
 	# print( "perm{:04}.sh created".format(i+1).rjust( 60, "." ) )
 	time.sleep( 0.1 ) # just in case we need it
 
@@ -254,14 +254,14 @@ for i in range( n_runs ):
 	# time.sleep( 5 )
 	#
 	# print( "Changing Directory back. Sleep 5" )
-	# os.system( "cd /home/ualcpr/QTL/Downloads/DLinkMaP/parallelizer/code" )
+	# os.system( "cd /scratch/ualcpr/QTL/Downloads/DLinkMaP/parallelizer/code" )
 	# time.sleep( 5 )
 	#
 	# os.system( "pwd" )
 	# os.system( "ls -ltrh" )
 
 	with open( mini_script_path, "a" ) as outfile:
-		print( "cd /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{:04}".format( i+1 ), file=outfile )
+		print( "cd /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{:04}".format( i+1 ), file=outfile )
 		print( "chmod +x perm{:04}.sh".format( i+1 ), file=outfile )
 		print( "run_script perm{:04}.sh".format( i+1 ), file=outfile )
 		print( "sleep 10", file=outfile )

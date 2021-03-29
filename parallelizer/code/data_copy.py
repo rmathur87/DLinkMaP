@@ -15,7 +15,7 @@ import time
 
 ### variables ==================================================================
 
-run_directory = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
+run_directory = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
 loglike_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/logLike"
 pval_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/p-vals"
 

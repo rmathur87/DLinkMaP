@@ -74,14 +74,14 @@ with open( rerun_script, "w" ) as scfile:
 		print( file=scfile )
 
 
-with open( scratch_copy, "w" ) as scratch_file:
-	print( "# to copy uncompleted models from home to scratch", file=scratch_file )
-	print( "# copying models: {0}".format( "\t".join(not_run) ), file=scratch_file )
-	print( file=scratch_file )
-	for run in not_run:
-		home_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
-		scratch_dir = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
-
-		print( "cp -r {0} {1}".format( home_dir, scratch_dir ), file=scratch_file )
-		print( "sleep 1", file=scratch_file )
-		print( file=scratch_file )
+# with open( scratch_copy, "w" ) as scratch_file:
+# 	print( "# to copy uncompleted models from home to scratch", file=scratch_file )
+# 	print( "# copying models: {0}".format( "\t".join(not_run) ), file=scratch_file )
+# 	print( file=scratch_file )
+# 	for run in not_run:
+# 		home_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
+# 		scratch_dir = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
+#
+# 		print( "cp -r {0} {1}".format( home_dir, scratch_dir ), file=scratch_file )
+# 		print( "sleep 1", file=scratch_file )
+# 		print( file=scratch_file )
