@@ -61,14 +61,14 @@ for dir in run_dirs:
 
 for run in finished_runs:
 
-	scratch_dir = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
-	home_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
-
-	if os.path.exists( home_dir ):
-		shutil.rmtree( home_dir )
-
-	shutil.copytree( scratch_dir, home_dir )
-	time.sleep( 1 )
+	# scratch_dir = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
+	# home_dir = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run )
+	#
+	# if os.path.exists( home_dir ):
+	# 	shutil.rmtree( home_dir )
+	#
+	# shutil.copytree( scratch_dir, home_dir )
+	# time.sleep( 1 )
 
 	# copy p-val file
 	pval_src = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}/maleWt/p-value_Male_avgbyvial.csv".format( run )
