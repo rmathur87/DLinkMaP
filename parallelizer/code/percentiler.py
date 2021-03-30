@@ -12,8 +12,8 @@ import math
 
 
 ### variables ==================================================================
-pval_dir = "~/Downloads/DLinkMaP/parallelizer/out_data/p-vals"
-pval_ptile_dir = "~/Downloads/DLinkMaP/parallelizer/out_data/percentile_data"
+pval_dir = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/p-vals"
+pval_ptile_dir = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/percentile_data"
 pval_ptile_0 = "{0}/{1}".format( pval_ptile_dir, "pval_ptile_0.csv" )
 pval_ptile_5 = "{0}/{1}".format( pval_ptile_dir, "pval_ptile_5.csv" )
 
