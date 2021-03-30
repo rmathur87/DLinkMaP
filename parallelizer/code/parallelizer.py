@@ -224,8 +224,11 @@ for i in range( n_runs ):
 		print( "# uniqing multiple runs", file=sfile )
 		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv".format( i+1 ), file=sfile )
 		print( "cat /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv | uniq > /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=sfile )
+		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=sfile )
 		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv".format( i+1 ), file=sfile )
 		print( "cat /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv | uniq > /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=sfile )
+		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=sfile )
+
 	# print( "perm{:04}.sh created".format(i+1).rjust( 60, "." ) )
 	time.sleep( 0.1 ) # just in case we need it
 
