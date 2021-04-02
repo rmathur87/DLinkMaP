@@ -57,7 +57,7 @@ for dir in run_dirs:
 
 with open( rerun_script, "w" ) as scfile:
 	print( "# to rerun only models that have not been previously run/failed to run before", file=scfile)
-	print( "# Models not/failed to run: {0}".format( "\t".join(not_run) ), file=scfile )
+	print( "# {1} models not/failed to run: {0}".format( "\t".join(not_run), len(not_run) ), file=scfile )
 	print( file=scfile )
 	for run in not_run:
 
