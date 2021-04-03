@@ -54,7 +54,6 @@ n_runs = 1000
 # n_runs = 1
 run_scripts_path = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
 mini_script_path = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/code/script.sh"
-copy_to_home_sh = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/code/copy_to_home.sh"
 
 #         ,,
 #       `7MM             mm
@@ -96,13 +95,6 @@ try:
 	time.sleep( 1 )
 except OSError as e:
 	print("Error: %s : %s" % (run_scripts_path, e.strerror))
-
-try:
-	os.remove( copy_to_home_sh )
-	open( copy_to_home_sh , 'a').close()
-except Exception as e:
-	print( e )
-	print( "Was not able to delete {0} file (probably does not exist)".format( copy_to_home_sh ) )
 
 try:
 	os.mkdir( run_scripts_path )
@@ -227,17 +219,15 @@ for i in range( n_runs ):
 		print( file=sfile )
 		print( file=sfile )
 
-	# need to run uniq fromwithin the data to get uniqed lines
-	with open( copy_to_home_sh, "a" ) as copy_file:
-		print( "# uniqing {0}".format( i+1 ), file=copy_file )
-		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv".format( i+1 ), file=copy_file )
-		print( "cat /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv | uniq > /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=copy_file )
-		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=copy_file )
-		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv".format( i+1 ), file=copy_file )
-		print( "cat /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv | uniq > /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=copy_file )
-		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=copy_file )
-		print( "sleep 10", file=copy_file )
-		print( file=copy_file )
+		# need to run uniq fromwithin the data to get uniqed lines
+		print( "sleep 10", file=sfile )
+		print( "# uniqing {0}".format( i+1 ), file=sfile )
+		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv".format( i+1 ), file=sfile )
+		print( "cat /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv | uniq > /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=sfile )
+		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=sfile )
+		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv".format( i+1 ), file=sfile )
+		print( "cat /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-log_like.csv | uniq > /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=sfile )
+		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/logLike_Male_avgbyvial.csv".format( i+1 ), file=sfile )
 
 	# print( "perm{:04}.sh created".format(i+1).rjust( 60, "." ) )
 	time.sleep( 0.1 ) # just in case we need it
