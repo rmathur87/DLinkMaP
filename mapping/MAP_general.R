@@ -136,7 +136,7 @@ system.time({
   for(i in 1:nrow(poslist)) {
     #for(i in 1:10) {
     if ((i %% 10) == 0) {
-      print( paste( i, "/", nrow(poslist), "=", i/nrow(poslist), "% at:", Sys.time(), sep = " ", collapse = NULL) )
+      print( paste( i, "/", nrow(poslist), "=", round(i/nrow(poslist), 3), "% at:", Sys.time(), sep = " ", collapse = NULL) )
     }
     #Input:
     #i is the position in the genome
