@@ -61,8 +61,6 @@ with open( rerun_script, "w" ) as scfile:
 	print( file=scfile )
 	for run in not_run:
 
-
-
 		print( "cd /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0}".format( run ), file=scfile )
 		print( "rm perm{0}shSCRIPT.*".format( run ), file=scfile )
 		print( "rm maleWt/*.csv".format( run ), file=scfile )
