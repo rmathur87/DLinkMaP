@@ -71,6 +71,8 @@ with open( rerun_script, "w" ) as scfile:
 		print( "sleep 10".format( run ), file=scfile )
 		print( file=scfile )
 
+		print( "Made script for run_{0}: {1:04}/{2:04} = {3:.3f}%".format( run, not_run.index( run ), len( not_run ), (not_run.index(run)/len(not_run))*100 ), end="\r" )
+
 
 # with open( scratch_copy, "w" ) as scratch_file:
 # 	print( "# to copy uncompleted models from home to scratch", file=scratch_file )
