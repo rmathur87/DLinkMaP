@@ -17,6 +17,8 @@ pval_ptile_dir = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/percent
 pval_ptile_0 = "{0}/{1}".format( pval_ptile_dir, "pval_ptile_0.csv" )
 pval_ptile_5 = "{0}/{1}".format( pval_ptile_dir, "pval_ptile_5.csv" )
 
+os.system( "mkdir {0}".format( pval_ptile_dir ) )
+
 
 ### functions ==================================================================
 
