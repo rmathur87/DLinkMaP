@@ -116,10 +116,10 @@ if(p != 0) {
   LF <- LineF
   cn <- unique(dat$cross.number)
   for(i in 1:length(cn)) {
-    w <- which(dat$cross.number == cn[i])
-    LM.O <- BlS(LM[w], LF[w])
-    LM[w] <- LM.O[[1]]
-    LF[w] <- LM.O[[2]]
+	w <- which(dat$cross.number == cn[i])
+	LM.O <- BlS(LM[w], LF[w])
+	LM[w] <- LM.O[[1]]
+	LF[w] <- LM.O[[2]]
   }
   LineM <- LM
   LineF <- LF
@@ -131,60 +131,64 @@ if(p != 0) {
 LOD <- list() #List to store the genome LOD (LRT values) and the model DF
 all.lik <- list() #List to store the genome log likelihoods - can be used for CI calculations (as done in epistatic model)
 
+new_time = as.numeric(as.POSIXct( Sys.time() ))
+
 print("Starting Genome Scan!!")
 system.time({
   for(i in 1:nrow(poslist)) {
-    #for(i in 1:10) {
-    if ((i %% 10) == 0) {
-      print( paste( i, "/", nrow(poslist), "=", round(i/nrow(poslist)*100, 3), "% at:", Sys.time(), sep = " ", collapse = NULL) )
-    }
-    #Input:
-    #i is the position in the genome
-    #LineM is the father information. This is defined in the NullSetUpBla.R file
-    #LineF is the mother information. This is defined in the NullSetUpBla.R file
-    #XNull is the design matrix under the null - only diet
-    #XLNull utilizes the sparse matrix solver
-    #SS.Null is the sum of squares under the null
-    #z is the cholesky's decomposition under the null - only random effects
-    #L.V is the cholesky decomposition of V
-    #q is the QTL position that will be tested for interaction
-    if (as.logical(epistaticModel)) {
-      if (i != epistaticQTL) {
-        QTL.map <- QTL.F.Map.Inter(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, q, sqrtW=sqrtW)
-        LOD <- c(LOD, list(QTL.map$out))
-        all.lik <- c(all.lik, list(c(i, q, QTL.map$log.lik)))
-      } else {
-        LOD <- c(LOD, list(rep(NA, 12)))
-        all.lik <- c(all.lik, list(c(i, q, rep(NA, 6))))
-      }
-    } else {
-      if(p != 0) {
-          LOD_res <- numeric(numPermutations) ## set aside space for results
-          lik_res <- numeric(numPermutations)
-      }
+	#for(i in 1:10) {
+	if ((i %% 10) == 0) {
+	  current_time = as.numeric(as.POSIXct( Sys.time() ))
+	  print( paste( current_time, " | delta(s) =", round(current_time-new_time, 1), "|" i, "/", nrow(poslist), "=", round(i/nrow(poslist)*100, 3), "%", sep = " ", collapse = NULL) )
+	  new_time = as.numeric(as.POSIXct( Sys.time() ))
+	}
+	#Input:
+	#i is the position in the genome
+	#LineM is the father information. This is defined in the NullSetUpBla.R file
+	#LineF is the mother information. This is defined in the NullSetUpBla.R file
+	#XNull is the design matrix under the null - only diet
+	#XLNull utilizes the sparse matrix solver
+	#SS.Null is the sum of squares under the null
+	#z is the cholesky's decomposition under the null - only random effects
+	#L.V is the cholesky decomposition of V
+	#q is the QTL position that will be tested for interaction
+	if (as.logical(epistaticModel)) {
+	  if (i != epistaticQTL) {
+		QTL.map <- QTL.F.Map.Inter(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, q, sqrtW=sqrtW)
+		LOD <- c(LOD, list(QTL.map$out))
+		all.lik <- c(all.lik, list(c(i, q, QTL.map$log.lik)))
+	  } else {
+		LOD <- c(LOD, list(rep(NA, 12)))
+		all.lik <- c(all.lik, list(c(i, q, rep(NA, 6))))
+	  }
+	} else {
+	  if(p != 0) {
+		  LOD_res <- numeric(numPermutations) ## set aside space for results
+		  lik_res <- numeric(numPermutations)
+	  }
 	    for (perm in 1:numPermutations) {
-          QTL.map <- QTL.F.Map(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW)
-          LOD <- c(LOD, list(QTL.map$out))
-          all.lik <- c(all.lik, list(c(i, QTL.map$log.lik)))
-      }
-      QTL.map <- QTL.F.Map(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW)
-      LOD <- c(LOD, list(QTL.map$out))
-      all.lik <- c(all.lik, list(c(i, QTL.map$log.lik)))
-    }
-    #output:
-    #each LOD will be a list of 12 elements
-    #LOD[[1]] is the LRT statistic for the Additive Model
-    #LOD[[2]] is the LRT statistic for the Dominant Model
-    #LOD[[3]] is the LRT statistic for the Full Model
-    #LOD[[4]] is the LRT statistic for the Additive-Diet Model
-    #LOD[[5]] is the LRT statistic for the Dominant-Diet Model
-    #LOD[[6]] is the LRT statistic for the Full-Diet Model
-    #LOD[[7]] is the number of cummulative factors for Additive Model
-    #LOD[[8]] is the number of cummulative factors for Additive and Dominant Models
-    #LOD[[9]] is the number of cummulative factors for Full Model
-    #LOD[[10]] is the number of cummulative factors for Additive + Dominant + Full + Add_D
-    #LOD[[11]] is the number of cummulative factors for Add + Dominant + Full + Add_D + Dom_D
-    #LOD[[12]] is the number of cummulative factors for Add + Dominant + Full + Add_D + Dom_D + Full_D
+		  QTL.map <- QTL.F.Map(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW)
+		  LOD <- c(LOD, list(QTL.map$out))
+		  all.lik <- c(all.lik, list(c(i, QTL.map$log.lik)))
+	  }
+	  QTL.map <- QTL.F.Map(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW)
+	  LOD <- c(LOD, list(QTL.map$out))
+	  all.lik <- c(all.lik, list(c(i, QTL.map$log.lik)))
+	}
+	#output:
+	#each LOD will be a list of 12 elements
+	#LOD[[1]] is the LRT statistic for the Additive Model
+	#LOD[[2]] is the LRT statistic for the Dominant Model
+	#LOD[[3]] is the LRT statistic for the Full Model
+	#LOD[[4]] is the LRT statistic for the Additive-Diet Model
+	#LOD[[5]] is the LRT statistic for the Dominant-Diet Model
+	#LOD[[6]] is the LRT statistic for the Full-Diet Model
+	#LOD[[7]] is the number of cummulative factors for Additive Model
+	#LOD[[8]] is the number of cummulative factors for Additive and Dominant Models
+	#LOD[[9]] is the number of cummulative factors for Full Model
+	#LOD[[10]] is the number of cummulative factors for Additive + Dominant + Full + Add_D
+	#LOD[[11]] is the number of cummulative factors for Add + Dominant + Full + Add_D + Dom_D
+	#LOD[[12]] is the number of cummulative factors for Add + Dominant + Full + Add_D + Dom_D + Full_D
   }
 })
 
@@ -194,38 +198,38 @@ like.out <- do.call('rbind', all.lik)
 
 if (epistaticModel) {
   colnames(out) <- c("LR - QTL 1", "LR - QTL 2", "LR - Inter", "LR - D-QTL1", "LR - D-QTL2", "LR - D-Inter",
-                     "DF - QTL 1", "DF - QTL 2", "DF - Inter", "DF - D-QTL1", "DF - D-QTL2", "DF - D-Inter",
-                     "P-Val - QTL1", "P-Val - QTL2", "P-Val - Inter", "P-Val - QTL",
-                     "P-Val - QTL1-D", "P-Val - QTL2-D", "P-Val - Inter-D", "P-Val - Diet")
+					 "DF - QTL 1", "DF - QTL 2", "DF - Inter", "DF - D-QTL1", "DF - D-QTL2", "DF - D-Inter",
+					 "P-Val - QTL1", "P-Val - QTL2", "P-Val - Inter", "P-Val - QTL",
+					 "P-Val - QTL1-D", "P-Val - QTL2-D", "P-Val - Inter-D", "P-Val - Diet")
 
   colnames(like.out) <- c('QTL1', 'QTL2', 'Log Like - QTL1', 'Log Like - QTL2', 'Log Like - Inter', 'Log Like - D-QTL1', 'Log Like - D-QTL2',
-                          'Log Like - D-Inter')
+						  'Log Like - D-Inter')
 
 } else {
   colnames(out) <- c("LR - Additive", "LR - Dominant", "LR - Full", "LR - D-Additive", "LR - D-Dominant", "LR - D-Full",
-                     "DF - Additive", "DF - Dominant", "DF - Full", "DF - D-Additive", "DF - D-Dominant", "DF - D-Full",
-                     "P-Val - Additive", "P-Val - Dominant", "P-Val - Full", "P-Val - Main",
-                     "P-Val - Add-D", "P-Val - Dom-D", "P-Val - Full-D", "P-Val - Diet")
+					 "DF - Additive", "DF - Dominant", "DF - Full", "DF - D-Additive", "DF - D-Dominant", "DF - D-Full",
+					 "P-Val - Additive", "P-Val - Dominant", "P-Val - Full", "P-Val - Main",
+					 "P-Val - Add-D", "P-Val - Dom-D", "P-Val - Full-D", "P-Val - Diet")
   colnames(like.out) <- c("QTL1", "Log Like - Additive", "Log Like - Dominant", "Log Like - Full",
-                          "Log Like - D-Additive", "Log Like - D-Dominant", "Log Like - D-Full")
+						  "Log Like - D-Additive", "Log Like - D-Dominant", "Log Like - D-Full")
 }
 
 #Write the results
 if (epistaticModel) {
   if (phenotype == 'metabolite') {
-    write.table(out, file=paste0(outDir, '/p-value_', metaboliteNum, '_', p, '_inter_', q, '.csv'), sep=',', row.names=F)
-    write.table(like.out, file=paste0(outDir, '/logLike_', metaboliteNum, '_', p, '_inter_', q, '.csv'), sep=',', row.names=F)
+	write.table(out, file=paste0(outDir, '/p-value_', metaboliteNum, '_', p, '_inter_', q, '.csv'), sep=',', row.names=F)
+	write.table(like.out, file=paste0(outDir, '/logLike_', metaboliteNum, '_', p, '_inter_', q, '.csv'), sep=',', row.names=F)
   } else {
-    write.table(out, file=paste0(outDir, '/p-value_', p, '_inter_', q, '.csv'), sep = ',', row.names=F)
-    write.table(like.out, file=paste0(outDir, '/logLike_', p, '_inter_', q, '.csv'), sep=',', row.names=F)
+	write.table(out, file=paste0(outDir, '/p-value_', p, '_inter_', q, '.csv'), sep = ',', row.names=F)
+	write.table(like.out, file=paste0(outDir, '/logLike_', p, '_inter_', q, '.csv'), sep=',', row.names=F)
   }
 } else {
 
   if (phenotype == 'metabolite') {
-    write.table(out, file = paste0(outDir, '/p-value', metaboliteNum, '.csv'), sep = ',', row.names=F)
-    write.table(like.out, file=paste0(outDir, '/logLike_', metaboliteNum, '.csv'), sep=',', row.names=F)
+	write.table(out, file = paste0(outDir, '/p-value', metaboliteNum, '.csv'), sep = ',', row.names=F)
+	write.table(like.out, file=paste0(outDir, '/logLike_', metaboliteNum, '.csv'), sep=',', row.names=F)
   } else {
-    write.table(out, file = paste0(outDir, '/p-value_', weight.sex, '_', weight.type, '.csv'), sep=',', row.names=F)
-    write.table(like.out, file=paste0(outDir, '/logLike_', weight.sex, '_', weight.type, '.csv'), sep=',', row.names=F)
+	write.table(out, file = paste0(outDir, '/p-value_', weight.sex, '_', weight.type, '.csv'), sep=',', row.names=F)
+	write.table(like.out, file=paste0(outDir, '/logLike_', weight.sex, '_', weight.type, '.csv'), sep=',', row.names=F)
   }
 }
