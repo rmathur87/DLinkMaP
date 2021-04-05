@@ -226,6 +226,7 @@ for i in range( n_runs ):
 	with open( copy_home_script, "w" ) as copyfile:
 		# need to run uniq fromwithin the data to get uniqed lines
 		print( "# uniqing {0}".format( i+1 ), file=copyfile )
+		print( "cd {0}".format( dir_name ), file=copyfile )
 		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv".format( i+1 ), file=copyfile )
 		print( "cat /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/temp-pval.csv | uniq > /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=copyfile )
 		print( "cp /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/p-value_Male_avgbyvial.csv".format( i+1 ), file=copyfile )
