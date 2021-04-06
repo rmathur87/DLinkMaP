@@ -16,7 +16,7 @@ import time
 ### variables ==================================================================
 
 run_directory = "/home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts"
-rerun_script = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/code/rerun.sh"
+rerun_script = "/scratch/ualcpr/QTL/DLinkMaP/parallelizer/code/all_rerun.sh"
 scratch_copy = "/home/ualcpr/QTL/DLinkMaP/parallelizer/code/copy_to_scratch.sh"
 
 ### functions ==================================================================
@@ -75,6 +75,9 @@ with open( rerun_script, "w" ) as scfile:
 		print( "Made script for run_{0}: {1:04}/{2:04} = {3:.3f}%".format( run, not_run.index( run )+1, len( not_run ), (not_run.index(run)/len(not_run))*100 ), end="\r" )
 		time.sleep(0.01)
 
+# creates a subset of the all_rerun file to automatically run the first 10 models
+os.system( "head -72 all_rerun.sh > rerun_10.sh" )
+os.system( "chmod +x rerun_10.sh " )
 
 # with open( scratch_copy, "w" ) as scratch_file:
 # 	print( "# to copy uncompleted models from home to scratch", file=scratch_file )
