@@ -72,6 +72,7 @@ with open( rerun_script, "w" ) as scfile:
 		print( file=scfile )
 
 		print( "Made script for run_{0}: {1:04}/{2:04} = {3:.3f}%".format( run, not_run.index( run ), len( not_run ), (not_run.index(run)/len(not_run))*100 ), end="\r" )
+		time.sleep(0.01)
 
 
 # with open( scratch_copy, "w" ) as scratch_file:

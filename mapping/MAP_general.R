@@ -139,7 +139,7 @@ system.time({
 	#for(i in 1:10) {
 	if ((i %% 10) == 0) {
 	  current_time = as.numeric(as.POSIXct( Sys.time() ))
-	  print( paste( current_time, " | delta(s) =", round(current_time-new_time, 1), "|" i, "/", nrow(poslist), "=", round(i/nrow(poslist)*100, 3), "%", sep = " ", collapse = NULL) )
+	  print( paste( current_time, "| delta(s) =", round(current_time-new_time, 1), "|" i, "/", nrow(poslist), "=", round(i/nrow(poslist)*100, 3), "%", sep = " ", collapse = NULL) )
 	  new_time = as.numeric(as.POSIXct( Sys.time() ))
 	}
 	#Input:
