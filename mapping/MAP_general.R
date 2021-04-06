@@ -131,15 +131,15 @@ if(p != 0) {
 LOD <- list() #List to store the genome LOD (LRT values) and the model DF
 all.lik <- list() #List to store the genome log likelihoods - can be used for CI calculations (as done in epistatic model)
 
-new_time = as.numeric(as.POSIXct( Sys.time() ))
 
 print("Starting Genome Scan!!")
 system.time({
+  new_time = as.numeric(as.POSIXct( Sys.time() ))
   for(i in 1:nrow(poslist)) {
 	#for(i in 1:10) {
 	if ((i %% 10) == 0) {
 	  current_time = as.numeric(as.POSIXct( Sys.time() ))
-	  print( paste( current_time, "| delta(s) =", round(current_time-new_time, 1), "|" i, "/", nrow(poslist), "=", round(i/nrow(poslist)*100, 3), "%", sep = " ", collapse = NULL) )
+	  print( paste( Sys.time(), "| delta(s) =", round(current_time-new_time, 1), "|" i, "/", nrow(poslist), "=", round(i/nrow(poslist)*100, 3), "%", sep = " ", collapse = NULL) )
 	  new_time = as.numeric(as.POSIXct( Sys.time() ))
 	}
 	#Input:

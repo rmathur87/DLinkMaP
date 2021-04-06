@@ -11,6 +11,7 @@ If the number of runs is too large, we may have to make it create a bash file to
 from pprint import pprint as pprint
 import os
 import glob
+import time
 
 ### variables ==================================================================
 
