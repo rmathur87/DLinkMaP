@@ -75,7 +75,10 @@ with open( rerun_script, "w" ) as scfile:
 		print( "Made script for run_{0}: {1:04}/{2:04} = {3:.3f}%".format( run, not_run.index( run )+1, len( not_run ), (not_run.index(run)/len(not_run))*100 ), end="\r" )
 		time.sleep(0.01)
 
+<<<<<<< HEAD
 # creates a subset of the all_rerun file to automatically run the first 10 models
+=======
+>>>>>>> da31468e0a20a4f1ba5114ea0b06bfdd2484e163
 os.system( "head -72 all_rerun.sh > rerun_10.sh" )
 os.system( "chmod +x rerun_10.sh " )
 
