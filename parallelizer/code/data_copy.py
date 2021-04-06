@@ -43,7 +43,7 @@ run_dirs = dir_getter( run_directory )
 n_runs = len( run_dirs )
 run_dirs.sort()
 
-finished_runs = [] # permutations that have not been run
+finished_runs = [] # permutations that have finihshed running
 
 for dir in run_dirs:
 	maleWt_csv = [ "{0}/maleWt/{1}".format( dir, f ) for f in os.listdir("{0}/maleWt".format( dir )) if f.endswith('.csv') ]
