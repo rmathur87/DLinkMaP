@@ -285,18 +285,18 @@ for i in range( n_runs ):
 os.system( "chmod +x {0}".format( mini_script_path ) )
 
 # to split bash file
-lines_per_file = 500
-smallfile = None
-with open( mini_script_path, "r" ) as bigfile:
-	for lineno, line in enumerate(bigfile):
-		if lineno % lines_per_file == 0:
-			if smallfile:
-				smallfile.close()
-			small_filename = 'mini_script-{}.sh'.format(lineno + lines_per_file)
-			smallfile = open(small_filename, "w")
-		smallfile.write(line)
-	if smallfile:
-		smallfile.close()
+# lines_per_file = 500
+# smallfile = None
+# with open( mini_script_path, "r" ) as bigfile:
+# 	for lineno, line in enumerate(bigfile):
+# 		if lineno % lines_per_file == 0:
+# 			if smallfile:
+# 				smallfile.close()
+# 			small_filename = 'mini_script-{}.sh'.format(lineno + lines_per_file)
+# 			smallfile = open(small_filename, "w")
+# 		smallfile.write(line)
+# 	if smallfile:
+# 		smallfile.close()
 
 # print( "".center( 100, "=" ) )
 # print( " FINISHED RUNNING ALL ".center( 100, "=" ) )
