@@ -56,7 +56,7 @@ for dir in run_dirs:
 	if total_file_size != 0:
 		finished_runs.append( dir[-4:] )
 
-	print( "        Checking run_{0}: {1:04}/{2:04}".format( dir[-4:], run_dirs.index( dir ), len( run_dirs ) ), end="\r" )
+	print( "        Checking run_{0}: {1:04}/{2:04}".format( dir[-4:], run_dirs.index( dir )+1, len( run_dirs ) ), end="\r" )
 
 print()
 
@@ -83,4 +83,4 @@ for run in finished_runs:
 	logLike_dst = "/home/ualcpr/QTL/DLinkMaP/parallelizer/out_data/logLike/male_logLike_{0}.csv".format( run )
 	shutil.copyfile( logLike_src, logLike_dst )
 
-	print( "Finished copying run_{0}: {1:04}/{2:04}".format( run, finished_runs.index( run ), len( finished_runs ) ), end="\r" )
+	print( "Finished copying run_{0}: {1:04}/{2:04}".format( run, finished_runs.index( run )+1, len( finished_runs ) ), end="\r" )
