@@ -126,7 +126,8 @@ if(p != 0) {
   print( "Permutation Test Complete" )
 }
 
-save( dat , file="/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_0521/permuted_data.Rda")
+write.csv( dat,"/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_0521/permuted_data.Rda", row.names = TRUE)
+
 stop( "output_permuted file. Comment this out for future runs" )
 
 ######################################           QTL              ######################################
