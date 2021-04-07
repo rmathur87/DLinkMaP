@@ -28,8 +28,14 @@ This folder parallelizes the script.
 - Finds the 100th percentile and 95th percentile p-values are creates the data in the `percentile_data` directory.
 
 
-## Run in following order:
-1. HOME: fail_run_finder
-2. HOME: copy_to_scratch.sh
-3. HOME: rerun.sh
-4. HOME: data_copy
+## Run in following order on `/scratch/`:
+1. data_copy.py
+2. fail_run_finder.py
+
+On Local machine, `scp` via stramdeck to local save, and push to github.
+
+## Future Work
+
+- I may need to write another script in order to find which permutations did not run, and then hijack fail_run_finder to rerun those.
+	- would have to do this by deleting those models from `/home` so that fail_run_finder can find them again.
+	- OR I can use parallelizer, and subset that output.
