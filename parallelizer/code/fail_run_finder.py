@@ -76,8 +76,8 @@ with open( rerun_script, "w" ) as scfile:
 		time.sleep(0.01)
 
 # creates a subset of the all_rerun file to automatically run the first 10 models
-os.system( "head -72 all_rerun.sh > rerun_10.sh" )
-os.system( "chmod +x rerun_10.sh " )
+os.system( "head -149 all_rerun.sh > rerun_20.sh" )
+os.system( "chmod +x rerun_20.sh " )
 
 # with open( scratch_copy, "w" ) as scratch_file:
 # 	print( "# to copy uncompleted models from home to scratch", file=scratch_file )
