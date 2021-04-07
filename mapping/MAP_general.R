@@ -126,6 +126,7 @@ if(p != 0) {
   print( "Permutation Test Complete" )
 }
 
+save( dat , file="permuted_data.Rda")
 
 ######################################           QTL              ######################################
 LOD <- list() #List to store the genome LOD (LRT values) and the model DF
