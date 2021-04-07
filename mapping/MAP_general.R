@@ -127,6 +127,7 @@ if(p != 0) {
 }
 
 save( dat , file="permuted_data.Rda")
+stop( "output_permuted file. Comment this out for future runs" )
 
 ######################################           QTL              ######################################
 LOD <- list() #List to store the genome LOD (LRT values) and the model DF
