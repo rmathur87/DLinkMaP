@@ -221,7 +221,7 @@ for i in range( n_runs ):
 		print( "# run copy script", file=sfile )
 		print( "cd {0}".format( dir_name ), file=sfile )
 		print( "chmod +x {0}".format( copy_home_script ), file=sfile )
-		print( "run_script copy{:04}.sh".format(i+1), file=sfile )
+		print( "bash copy{:04}.sh".format(i+1), file=sfile )
 		print( file=sfile )
 
 	with open( copy_home_script, "w" ) as copyfile:
