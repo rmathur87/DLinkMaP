@@ -143,7 +143,7 @@ system.time({
 	#for(i in 1:10) {
 	if ((i %% 10) == 0) {
 	  time2 = Sys.time()
-	  cat( paste( Sys.time(), "\t", "|", "\t", round(difftime(time2, time1), 3), " (s/10perm) |", "\t", round(i/nrow(poslist)*100, 3), "%", "\t", "=", i, "/", nrow(poslist), collapse = NULL), "\n" )
+	  cat( paste( Sys.time(), "\t", "|", "\t", round(difftime(time2, time1), 3), " (s/10perm)", "\t", "|", "\t", round(i/nrow(poslist)*100, 3), "%", "\t", "=", i, "/", nrow(poslist), collapse = NULL), "\n" )
 	  time1 = Sys.time()
 	}
 	#Input:
