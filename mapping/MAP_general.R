@@ -143,7 +143,7 @@ system.time({
 	#for(i in 1:10) {
 	if ((i %% 10) == 0) {
 	  time2 = Sys.time()
-	  print( paste( Sys.time(), " | ", difftime(time2, time1), " | ", round(i/nrow(poslist)*100, 3), "% = ", i, "/", nrow(poslist), sep = "", collapse = NULL) )
+	  print( paste( Sys.time(), " | ", round(difftime(time2, time1), 3), " (sec/perm) | ", round(i/nrow(poslist)*100, 3), "% = ", i, "/", nrow(poslist), sep = "", collapse = NULL) )
 	  time1 = Sys.time()
 	}
 	#Input:
