@@ -134,13 +134,17 @@ write.csv( dat,"/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_0521/p
 LOD <- list() #List to store the genome LOD (LRT values) and the model DF
 all.lik <- list() #List to store the genome log likelihoods - can be used for CI calculations (as done in epistatic model)
 
-
 print("Starting Genome Scan!!")
+
+time1 = Sys.time()
+
 system.time({
   for(i in 1:nrow(poslist)) {
 	#for(i in 1:10) {
 	if ((i %% 10) == 0) {
-	  print( paste( Sys.time(), " | ", round(i/nrow(poslist)*100, 3), "% = ", i, "/", nrow(poslist), sep = "", collapse = NULL) )
+	  time2 = Sys.time()
+	  print( paste( Sys.time(), " | ", difftime(time2, time1), " | ", round(i/nrow(poslist)*100, 3), "% = ", i, "/", nrow(poslist), sep = "", collapse = NULL) )
+	  time1 = Sys.time()
 	}
 	#Input:
 	#i is the position in the genome
