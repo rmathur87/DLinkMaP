@@ -126,10 +126,6 @@ if(p != 0) {
   print( "Permutation Test Complete" )
 }
 
-write.csv( dat,"/scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_0521/permuted_data.Rda", row.names = TRUE)
-
-# stop( "output_permuted file. Comment this out for future runs" )
-
 ######################################           QTL              ######################################
 LOD <- list() #List to store the genome LOD (LRT values) and the model DF
 all.lik <- list() #List to store the genome log likelihoods - can be used for CI calculations (as done in epistatic model)
