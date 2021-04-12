@@ -216,6 +216,8 @@ for i in range( n_runs ):
 		print( "sleep 5", file=sfile )
 		print( file=sfile )
 		print( "# R CMD INSTALL ~/QTL/DLinkMap/DSPRqtl_2.0-5.tar.gz", file=sfile )
+		print( "# R CMD INSTALL ~/QTL/DLinkMap/DSPRqtl_2.0-5.tar.gz", file=sfile )
+		print( "# Run R Script", file=sfile )
 		print( "Rscript /scratch/ualcpr/QTL/DLinkMaP/mapping/MAP_general.R /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/params_{0:04}.csv".format( i+1 ), file=sfile )
 		print( file=sfile )
 		print( "# run copy script", file=sfile )
@@ -304,3 +306,6 @@ os.system( "chmod +x {0}".format( mini_script_path ) )
 
 # os.system( "tree ../" )
 # sys.exit( "Creation" )
+
+
+Rscript /scratch/ualcpr/QTL/DLinkMaP/mapping/NullSetUpBla_TG_Trehalose_Weights_permutation.R /scratch/ualcpr/QTL/DLinkMaP/mapping/ 12345 /scratch/ualcpr/QTL/DLinkMaP/phenotypes/MaleWt/male_Weight_Formatted_AvgByVial.txt “weight” /scratch/ualcpr/QTL/DLinkMaP/mapping 1
