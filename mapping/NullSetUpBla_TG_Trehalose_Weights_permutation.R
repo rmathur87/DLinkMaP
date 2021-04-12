@@ -59,8 +59,7 @@ for (p in 1:numPerm) {
     } else {
       dat$y_perm <- sample(dat$y)
       write.table(dat, file = paste0(outDir, '/Data_', phenotype, 'permutation', p, '.csv'), sep = ',', col.names = T, row.names = F, quote = F)
-      #y <- sample(dat[phenotypeColumnName])
-      allPerms = c(allPerms, list(y))
+      allPerms = c(allPerms, list(dat$y_perm))
     }
 }
 
