@@ -18,20 +18,13 @@ source('QC.R')
 
 
 #Get Values from Parameters File
-#fileName <- fileArgs[which(fileArgs == 'fileName')+2]
-fileName <- args[2]
-#fileName <- 'C:/Users/rmathur/OneDrive - Research Triangle Institute/Documents/GitHub/DLinkMAP/phenotypes/male_Weight_Formatted_AvgByVial.txt'
+fileName <- args[2] #original phenotype file
 print(paste0("FileName: ", fileName))
-#phenotype <- fileArgs[which(fileArgs == 'phenotype')+2]
-phenotype <- args[3]
-#phenotype='Weight'
+phenotype <- args[3] #phenotype = 'weight'
 print(paste0('Phenotype: ', phenotype))
-phenotypeColumnName = 'average.wt.per.vial'
-#outDir <- fileArgs[which(fileArgs == 'outDir')+2]
-outDir <- 'C:/Users/rmathur/OneDrive - Research Triangle Institute/MPP paper/permutationResults/NullModels'
-outDir <- args[4]
+outDir <- args[4] #output directory
 print(paste0('outDir: ', outDir))
-numPerm <- args[5]
+numPerm <- args[5] #
 print(paste0('Num Permutations: ', numPerm))
 if (phenotype == 'metabolite') {
   #metabDir <- fileArgs[which(fileArgs == 'metabDir')+2]
@@ -52,7 +45,7 @@ print("Read Parameters File")
 dat <- read.table(fileName, sep = ',', header = TRUE)
 print("Read in Dataset")
 
-allPerms = c()
+allPerms = list()
 for (p in 1:numPerm) {
     if (phenotype == 'metabolite') {
       metaboliteNum <- args[6]
@@ -60,9 +53,10 @@ for (p in 1:numPerm) {
       y <- read.table(paste0(metabDir, "/artifactResiduals/residual", metaboliteNum, ".csv"), sep=",", header=T)
       y <- c(y)$x
     } else {
-      y <- sample(dat$y)
+      dat$y_perm <- sample(dat$y)
+      write.table(dat, file = paste0(outDir, '/Data_', phenotype, 'permutation', p, '.csv'), sep = ',', col.names = T, row.names = F, quote = F)
       #y <- sample(dat[phenotypeColumnName])
-      allPerms = c(allPerms, y)
+      allPerms = c(allPerms, list(y))
     }
 }
 
