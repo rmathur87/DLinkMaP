@@ -52,7 +52,7 @@ print("Read in Dataset")
 allPerms = list()
 for (p in 1:numPerm) {
     if (phenotype == 'metabolite') {
-      metaboliteNum <- args[6]
+      metaboliteNum <- args[8]
       #metaboliteNum <- 1
       y <- read.table(paste0(metabDir, "/artifactResiduals/residual", metaboliteNum, ".csv"), sep=",", header=T)
       y <- c(y)$x
