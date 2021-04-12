@@ -18,17 +18,21 @@ source('QC.R')
 
 
 #Get Values from Parameters File
-fileName <- args[2] #original phenotype file
+seed <- args[2] #run seed
+print(paste0("Seed: ", seed))
+set.seed(seed)
+fileName <- args[3] #original phenotype file
 print(paste0("FileName: ", fileName))
-phenotype <- args[3] #phenotype = 'weight'
+phenotype <- args[4] #phenotype = 'weight'
 print(paste0('Phenotype: ', phenotype))
-outDir <- args[4] #output directory
+outDir <- args[5] #output directory
 print(paste0('outDir: ', outDir))
-numPerm <- args[5] #
+numPerm <- args[6] #
 print(paste0('Num Permutations: ', numPerm))
+
 if (phenotype == 'metabolite') {
   #metabDir <- fileArgs[which(fileArgs == 'metabDir')+2]
-  metabDir <- args[5]
+  metabDir <- args[7]
   print(paste0('metabDir: ', metabDir))
 } else if (phenotype == 'survival') {
   #survivalType <- fileArgs[which(fileArgs == 'survivalType')+2]
