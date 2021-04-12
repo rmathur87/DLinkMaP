@@ -1,6 +1,6 @@
 Option Name,Descrip,Value
 commDir,The directory where dependent scripts are stored. This will be set as the working directory for the program. This should be set to where the 'mapping' directory is located,~/Downloads/DLinkMaP/mapping/
-p,whether permutation testing is conducted (value: 1-yes; 0 - no),1
+p,whether permutation testing is conducted (value: 1-yes; 0 - no),0
 seed,random seed,92187
 phenotype,"phenotype that will be analyzed ('metabolite', 'weight', 'trehalose', and 'TG' have been tested)",weight
 weightSex,"The sex of weight phenotype samples being analyzed (values include ""Male"" and ""Female"")",Male
