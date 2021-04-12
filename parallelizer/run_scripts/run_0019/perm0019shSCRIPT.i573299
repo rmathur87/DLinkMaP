@@ -1,0 +1,19 @@
+ 
+============================================================
+=====     Queued job information at submit time        =====
+============================================================
+  The submitted file is: perm0019.sh
+  The time limit is 150:00:00 HH:MM:SS.
+  The target directory is: /home/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_0019
+  The memory limit is: 4gb
+  The job will start running after: 2021-03-20T14:01:57
+  Job Name: perm0019shSCRIPT
+  Virtual queue: medium
+  QOS: --qos=medium
+  Constraints: --constraint=dmc
+  Command typed:
+/apps/scripts/run_script perm0019.sh     
+  Queue submit command:
+sbatch --qos=medium -J perm0019shSCRIPT --begin=2021-03-20T14:01:57 --requeue --mail-user=cprele@ua.edu -o perm0019shSCRIPT.o$SLURM_JOB_ID -t 150:00:00 -N 1-1 -n 2 --mem-per-cpu=2000 --constraint=dmc 
+  Job number: 573299
+ 

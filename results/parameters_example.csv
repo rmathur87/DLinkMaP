@@ -3,7 +3,7 @@ commDir,The directory where dependent scripts are stored. This will be set as th
 p,whether permutation testing is conducted (value: 1-yes; 0 - no),1
 seed,random seed,92187
 phenotype,"phenotype that will be analyzed ('metabolite', 'weight', 'trehalose', and 'TG' have been tested)",weight
-weightSex,"The sex of weight phenotype samples being analyzed (values include ""male"" and ""female"")",male
+weightSex,"The sex of weight phenotype samples being analyzed (values include ""Male"" and ""Female"")",Male
 weightType,The version of the weight phenotype that is being analyzed ('original' and 'avgbyvial' have been tested),avgbyvial
 fileName,full path and file name of the dataset to analyze,/gobot/rmathur/DLinkMaP/phenotypes/MaleWt/male_Weight_Formatted_AvgByVial.txt
 metabDir,the directory the residual values for the metabolomic data is stored. This can be ignored for non-metabolomic analyses,NA
@@ -13,5 +13,5 @@ numPermutations,Number of permutations to perform for permutation testing,1000
 survivalType,the type of survival data being analyzed (values = pupal; larvae). This can be ignored for non-survival analyses.,NA
 survivalTrans,type of survival data transformation analyzed. This can be ignored for non-survival analyses.,NA
 survivalVarName,name of the response for survival analysis. This can be ignored for non-survival analyses.,NA
-nullDir,directory for the null models,/gobot/rmathur/DLinkMaP/results/maleWt/Null_Male_Weight_avgbyvial.Rdata
+nullDir,directory for the null models,/gobot/rmathur/DLinkMaP/results/maleWt
 outDir,directory for the output,/gobot/rmathur/DLinkMaP/results/maleWt

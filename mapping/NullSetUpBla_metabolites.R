@@ -86,4 +86,3 @@ for (metaboliteNum in 219:422) {
   
   # LLike: -n/2 * (1+log(2*pi*SS.Null/n)) * 2  
   # logLik(lm(z ~ 0+XN)) * 2 is the other way.. 
-}
