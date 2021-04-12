@@ -127,7 +127,7 @@ for (p in 1:numPerm) {
     XLNull <-  solveL(L.V[[1]], XNull)
     XLNull[,2] <- XLNull[,2] - XLNull[,1] * crossprod(XLNull[,1], XLNull[,2])/crossprod(XLNull[,1])
     XN <- XLNull %*% diag(1/sqrt(diag(crossprod(XLNull))))
-    z <- as.numeric(solveL(L.V[[1]], y))
+    z <- as.numeric(solveL(L.V[[1]], thisY))
 
 
     SS.0 <- sum(z * z)
