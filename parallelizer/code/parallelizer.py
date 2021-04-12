@@ -212,7 +212,7 @@ for i in range( n_runs ):
 		print( "sleep 5", file=sfile )
 		print( "source /opt/asn/etc/asn-bash-profiles-special/modules.sh", file=sfile )
 		print( "sleep 5", file=sfile )
-		print( "module load R/4.0.2_scratch", file=sfile )
+		print( "module load R/4.0.5_scratch", file=sfile )
 		print( "sleep 5", file=sfile )
 		print( file=sfile )
 		print( "# R CMD INSTALL ~/QTL/DLinkMap/DSPRqtl_2.0-5.tar.gz", file=sfile )
