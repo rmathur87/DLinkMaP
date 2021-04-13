@@ -219,6 +219,7 @@ for i in range( n_runs ):
 		print( "rm /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/*RData".format( i+1), file=sfile )
 		print( "sleep 5", file=sfile )
 		print( "Rscript /scratch/ualcpr/QTL/DLinkMaP/mapping/NullSetUpBla_TG_Trehalose_Weights_permutation.R /scratch/ualcpr/QTL/DLinkMaP/mapping/ {1} /scratch/ualcpr/QTL/DLinkMaP/phenotypes/MaleWt/male_Weight_Formatted_AvgByVial.txt Weight /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt 1".format( i+1, pi_seeds[i] ), file=sfile )
+		print( "mv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/Data_Weightpermutation1.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/readable_data_{0:04}.txt".format( i+1), file=sfile )
 		print( "mv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/*RData /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/maleWt/Null_Male_Weight_avgbyvial.RData".format( i+1), file=sfile )
 		print( file=sfile )
 		print( "# Run R Script", file=sfile )
