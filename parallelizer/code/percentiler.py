@@ -129,7 +129,7 @@ with open( pval_ptile_0, "w" ) as file0, open( pval_ptile_5, "w" ) as file5:
 		to_print_file5.append( str(pval_fullD[ptile_5_index]) )
 		to_print_file5.append( str(pval_diet[ptile_5_index]) )
 
-		print( "{0:>04} / {1:>04}".format( pval_files.index( pval_file )+1, len( pval_files ) ).center( 100, " " ), end="\r" ) # remove if enabling tqdm
+		print( "run_{2} = {0:>04} / {1:>04}".format( pval_files.index( pval_file )+1, len( pval_files ), permutation ).center( 100, " " ), end="\r" ) # remove if enabling tqdm
 
 		print( ",".join( to_print_file0 ), file=file0 )
 		print( ",".join( to_print_file5 ), file=file5 )
