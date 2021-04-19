@@ -9,6 +9,9 @@ import os
 import csv
 import sys
 import math
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
 
 
 ### variables ==================================================================
@@ -16,6 +19,9 @@ pval_dir = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/p-vals"
 pval_ptile_dir = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/percentile_data"
 pval_ptile_0 = "{0}/{1}".format( pval_ptile_dir, "pval_ptile_0.csv" )
 pval_ptile_5 = "{0}/{1}".format( pval_ptile_dir, "pval_ptile_5.csv" )
+histogram_dir = "/Users/rele.c/Downloads/DLinkMaP/parallelizer/out_data/percentile_data/histograms"
+hist_0_dir = "{0}/{1}".format( histogram_dir, "hist_0" )
+hist_5_dir = "{0}/{1}".format( histogram_dir, "hist_5" )
 
 os.system( "mkdir {0}".format( pval_ptile_dir ) )
 
@@ -37,6 +43,38 @@ def dir_getter( path, out_type="full" ):
 	elif out_type == "full":
 		return( full_paths )
 
+def make_hist( data_frame, header_name, image_save_dir ):
+	"""
+	Creates a histogram and saves it to the particular location along with proper names
+	"""
+	import seaborn as sns
+	import matplotlib.pyplot as plt
+	import pandas as pd
+	import numpy as np
+
+	data_frame[ header_name ] = pd.to_numeric( data_frame[ header_name ],errors='coerce')
+
+	f, ( ax_box, ax_hist ) = plt.subplots( 2, sharex=True, gridspec_kw={"height_ratios": (.1, .9)} )
+
+	# adding n_bins using the Freedman-Diaconis rule.
+	Q1 = np.percentile(data_frame[ header_name ], 25, interpolation = 'midpoint')
+	Q3 = np.percentile(data_frame[ header_name ], 75, interpolation = 'midpoint')
+	IQR = Q3-Q1
+
+	n_bins = int(round(( max(data_frame[ header_name ]) - min(data_frame[ header_name ]) )/( (2*IQR)/len(data_frame[ header_name ])**(1./3.) ), 0))
+
+	print((n_bins))
+	print(type(n_bins))
+
+	sns.boxplot( data_frame[header_name], ax=ax_box )
+	sns.histplot( data=data_frame, x=header_name, ax=ax_hist, bins=n_bins )
+
+	ax_box.set(xlabel='')
+	# plt.show()
+	plt.savefig( "{0}/{1}.png".format( image_save_dir, header_name.lower().replace(" ", "_") ) )
+
+
+
 ### code ==================================================================
 
 
@@ -54,6 +92,9 @@ header_row = [
 	"P-Val - Full-D",
 	"P-Val - Diet"
 ]
+
+histogram_data_0 = []
+histogram_data_5 = []
 
 with open( pval_ptile_0, "w" ) as file0, open( pval_ptile_5, "w" ) as file5:
 	print( ",".join( header_row ), file=file0 )
@@ -129,21 +170,18 @@ with open( pval_ptile_0, "w" ) as file0, open( pval_ptile_5, "w" ) as file5:
 		to_print_file5.append( str(pval_fullD[ptile_5_index]) )
 		to_print_file5.append( str(pval_diet[ptile_5_index]) )
 
+		histogram_data_0.append( to_print_file0 )
+		histogram_data_5.append( to_print_file5 )
+
 		print( "run_{2} = {0:>04} / {1:>04}".format( pval_files.index( pval_file )+1, len( pval_files ), permutation ).center( 100, " " ), end="\r" ) # remove if enabling tqdm
 
 		print( ",".join( to_print_file0 ), file=file0 )
 		print( ",".join( to_print_file5 ), file=file5 )
 
+# make histograms
+hist_0_df = pd.DataFrame( histogram_data_0 , columns = header_row )
+hist_5_df = pd.DataFrame( histogram_data_5 , columns = header_row )
 
-
-# file = "~/Downloads/DLinkMaP/parallelizer/out_data/p-vals/male_pval_0001.csv"
-# opened_csv_file = open(file, 'r')
-# reader = csv.reader(opened_csv_file)
-#
-# outer_fruits_list = []
-# for row in reader:
-#         outer_fruits_list.append(row)
-#
-# opened_csv_file.close()
-#
-# pprint(outer_fruits_list[:3])
+for feature in header_row:
+	make_hist( hist_0_df, feature, hist_0_dir )
+	make_hist( hist_5_df, feature, hist_5_dir )
