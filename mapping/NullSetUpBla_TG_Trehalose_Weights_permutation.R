@@ -1,5 +1,5 @@
 ######  2014/08/27 the final set up for the TG traits... the LM regression + permutaiton will be easier this
-###### way.. 
+###### way..
 
 #.libPaths('/home/sroy/R/x86_64-pc-linux-gnu-library/3.0')
 args <- commandArgs(trailingOnly = TRUE)
@@ -58,7 +58,7 @@ for (p in 1:numPerm) {
       y <- c(y)$x
     } else {
       dat$y_perm <- sample(dat$y)
-      write.table(dat, file = paste0(outDir, '/Data_', phenotype, 'permutation', p, '.csv'), sep = ',', col.names = T, row.names = F, quote = F)
+      write.table(dat, file = paste0(outDir, '/Data_', phenotype, '_permutation', p, '.csv'), sep = ',', col.names = T, row.names = F, quote = F)
       allPerms = c(allPerms, list(dat$y_perm))
     }
 }
@@ -86,12 +86,12 @@ XNull <- cbind(1, Diet)
 
 if (phenotype == 'tg' | phenotype == 'trehalose') {
   ZP <- Matrix(model.matrix(~0 + as.factor(plate), dat))
-  
+
   Z <- cBind(ZM, Zb, ZBla, ZCr, ZMD, ZbD, ZBlaD , ZCrD, ZV, ZP)
   nZ <- c(ncol(ZM), ncol(Zb), ncol(ZBla), ncol(ZCr), ncol(ZMD), ncol(ZbD), ncol(ZBlaD), ncol(ZCrD), ncol(ZV), ncol(ZP))
-  
+
   nZG <- sapply(1:4, function(i) c(i, i + 4), simplify = F)
-  
+
 } else {
   Z <- cBind(ZM, Zb, ZBla, ZCr, ZMD, ZbD, ZBlaD , ZCrD, ZV)
   nZ <- c(ncol(ZM), ncol(Zb), ncol(ZBla), ncol(ZCr), ncol(ZMD), ncol(ZbD), ncol(ZBlaD), ncol(ZCrD), ncol(ZV))
@@ -106,7 +106,7 @@ allFnull = list()
 for (p in 1:numPerm) {
     if (phenotype == 'Weight') {
       sqtW <- sqrt(as.numeric(dat$number.weighed))
-  
+
       #fNull <- DiaCor3(sqtW * y, sqtW * XNull, t(sqtW * Z), nZ, nZG)
       thisY <- allPerms[[p]]
       fNull <- DiaCor3(sqtW * thisY, sqtW * XNull, t(sqtW * Z), nZ, nZG)
@@ -120,7 +120,7 @@ for (p in 1:numPerm) {
     system.time(fNullB <- nlminb(c(rep(0, length(nZ)), rep(0, length(nZG))), fNull[[1]]))
 
 
-    ##### From the NULL 
+    ##### From the NULL
     L.V <- fNull[[4]](fNullB$par)
 
     ### Need to residualize w/o a 1.. so avoid using lm or use w/ ~0+
@@ -139,17 +139,16 @@ for (p in 1:numPerm) {
     print("Computation Complete!! Saving Results!!")
 
     if (phenotype == 'survival') {
-      #save(list= c('L.V', 'LineM', 'LineF', 'crossN', 'XNull', 'XLNull', 'SS.Null', 'z', 'logLike'), 
+      #save(list= c('L.V', 'LineM', 'LineF', 'crossN', 'XNull', 'XLNull', 'SS.Null', 'z', 'logLike'),
       #     file = paste0(outDir, '/Null_', transform.type, '.RData'))
       print("Survival Analysis is not Implemented!!")
     } else if (phenotype == 'metabolite') {
-      save(list= c('L.V', 'LineM', 'LineF', 'crossN', 'XNull', 'XLNull', 'SS.Null', 'z', 'logLike'), 
+      save(list= c('L.V', 'LineM', 'LineF', 'crossN', 'XNull', 'XLNull', 'SS.Null', 'z', 'logLike'),
            file = paste0(outDir, '/Null_', metaboliteNum, 'permutation', p, '.RData'))
     } else {
-      save(list= c('L.V', 'LineM', 'LineF', 'crossN', 'XNull', 'XLNull', 'SS.Null', 'z', 'logLike'), 
+      save(list= c('L.V', 'LineM', 'LineF', 'crossN', 'XNull', 'XLNull', 'SS.Null', 'z', 'logLike'),
            file = paste0(outDir, '/Null_', phenotype, 'permutation', p, '.RData'))
     }
-    # LLike: -n/2 * (1+log(2*pi*SS.Null/n)) * 2  
-    # logLik(lm(z ~ 0+XN)) * 2 is the other way.. 
+    # LLike: -n/2 * (1+log(2*pi*SS.Null/n)) * 2
+    # logLik(lm(z ~ 0+XN)) * 2 is the other way..
 }
-
