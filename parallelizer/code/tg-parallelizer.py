@@ -232,9 +232,9 @@ for i in range( n_runs ):
 		print( "# R CMD INSTALL ~/QTL/DLinkMap/DSPRqtl_2.0-5.tar.gz", file=sfile )
 		print( "rm /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/*RData".format( i+1), file=sfile )
 		print( "sleep 5", file=sfile )
-		print( "Rscript /scratch/ualcpr/QTL/DLinkMaP/mapping/NullSetUpBla_TG_Trehalose_Weights_permutation.R /scratch/ualcpr/QTL/DLinkMaP/mapping/ {1} /scratch/ualcpr/QTL/DLinkMaP/phenotypes/TG/TG_data_updated_7_24_14.txt TG /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG 1".format( i+1, pi_seeds[i] ), file=sfile ) # I might have to change the `tg` in this line to `TG` if it fails to run
-		print( "mv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/Data_TG_permutation1.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/readable_data_{0:04}.txt".format( i+1), file=sfile ) # may have to change `tg` here to `TG` depending on previous line
-		print( "mv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/*RData /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/Null_Male_TG_avgbyvial.RData".format( i+1), file=sfile ) # may have to change `tg` here to `TG` depending on previous lines
+		print( "Rscript /scratch/ualcpr/QTL/DLinkMaP/mapping/NullSetUpBla_TG_Trehalose_Weights_permutation.R /scratch/ualcpr/QTL/DLinkMaP/mapping/ {1} /scratch/ualcpr/QTL/DLinkMaP/phenotypes/TG/TG_data_updated_7_24_14.txt tg /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG 1".format( i+1, pi_seeds[i] ), file=sfile ) # I might have to change the `tg` in this line to `TG` if it fails to run
+		print( "mv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/Data_tg_permutation1.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/readable_data_{0:04}.txt".format( i+1), file=sfile ) # may have to change `tg` here to `TG` depending on previous line
+		print( "mv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/*RData /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/Null_Male_tg_avgbyvial.RData".format( i+1), file=sfile ) # may have to change `tg` here to `TG` depending on previous lines
 		print( file=sfile )
 		print( "# Run R Script", file=sfile )
 		print( "Rscript /scratch/ualcpr/QTL/DLinkMaP/mapping/MAP_general.R /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/params_{0:04}.csv".format( i+1 ), file=sfile )
