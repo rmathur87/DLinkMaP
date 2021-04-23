@@ -205,7 +205,7 @@ for i in range( n_runs ):
 				temp_line = [
 					line.split(",")[0],
 					line.split(",")[1],
-					"/scratch/ualcpr/QTL/DLinkMaP/phenotypes/TG/TG_data_updated_7_24_14.txt"
+					"/scratch/ualcpr/QTL/DLinkMaP/phenotypes/TG/TG_data_updated_5_8_13_formatted.csv"
 				]
 				add_line = ",".join(temp_line)
 			print( add_line, file=pfile )
@@ -232,7 +232,7 @@ for i in range( n_runs ):
 		print( "# R CMD INSTALL ~/QTL/DLinkMap/DSPRqtl_2.0-5.tar.gz", file=sfile )
 		print( "rm /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/*RData".format( i+1), file=sfile )
 		print( "sleep 5", file=sfile )
-		print( "Rscript /scratch/ualcpr/QTL/DLinkMaP/mapping/NullSetUpBla_TG_Trehalose_Weights_permutation.R /scratch/ualcpr/QTL/DLinkMaP/mapping/ {1} /scratch/ualcpr/QTL/DLinkMaP/phenotypes/TG/TG_data_updated_7_24_14.txt tg /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG 1".format( i+1, pi_seeds[i] ), file=sfile ) # I might have to change the `tg` in this line to `TG` if it fails to run
+		print( "Rscript /scratch/ualcpr/QTL/DLinkMaP/mapping/NullSetUpBla_TG_Trehalose_Weights_permutation.R /scratch/ualcpr/QTL/DLinkMaP/mapping/ {1} /scratch/ualcpr/QTL/DLinkMaP/phenotypes/TG/TG_data_updated_5_8_13_formatted.csv tg /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG 1".format( i+1, pi_seeds[i] ), file=sfile ) # I might have to change the `tg` in this line to `TG` if it fails to run
 		print( "mv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/Data_tg_permutation1.csv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/readable_data_{0:04}.txt".format( i+1), file=sfile ) # may have to change `tg` here to `TG` depending on previous line
 		print( "mv /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/*RData /scratch/ualcpr/QTL/DLinkMaP/parallelizer/run_scripts/run_{0:04}/TG/Null_Male_tg_avgbyvial.RData".format( i+1), file=sfile ) # may have to change `tg` here to `TG` depending on previous lines
 		print( file=sfile )
