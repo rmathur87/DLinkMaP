@@ -60,7 +60,7 @@ source('QC.R')
 print("Reading Datafile!!")
 dat <- read.table(as.character(fileName), sep = ',', header = TRUE)
 
-
+sqrtW <- 1 # weight default is 1. Changed only for weight phenotypes
 if (phenotype == 'survival') {
   print("Survival Data Analysis is not Implemented!!")
   #surv.type <- fileArgs[which(fileArgs == 'survivalType')+2]
@@ -167,13 +167,10 @@ system.time({
 		  lik_res <- numeric(numPermutations)
 	  }
 	  for (perm in 1:numPermutations) {
-		QTL.map <- QTL.F.Map(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW)
-		LOD <- c(LOD, list(QTL.map$out))
-		all.lik <- c(all.lik, list(c(i, QTL.map$log.lik)))
+  		QTL.map <- QTL.F.Map(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW)
+  		LOD <- c(LOD, list(QTL.map$out))
+  		all.lik <- c(all.lik, list(c(i, QTL.map$log.lik)))
 	  }
-	  QTL.map <- QTL.F.Map(i, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW)
-	  LOD <- c(LOD, list(QTL.map$out))
-	  all.lik <- c(all.lik, list(c(i, QTL.map$log.lik)))
 	}
 	#output:
 	#each LOD will be a list of 12 elements
