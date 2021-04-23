@@ -96,7 +96,7 @@ if (phenotype == 'survival') {
   print("Loading Null Model Info!!")
   y <- dat$y
 
-	load(paste0(as.character(nullDir), '/Null2.RData'))
+	load(paste0(as.character(nullDir), '/Null_Male_tg_avgbyvial.RData'))
 }
 print("Loaded in Null Model!!")
 
