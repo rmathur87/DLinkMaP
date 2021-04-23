@@ -113,7 +113,7 @@ for (p in 1:numPerm) {
       allFnull = c(allFnull, fNull)
     } else {
       #fNull <- DiaCor3(y, XNull, t(Z), nZ, nZG)
-      thisY <- allPerms[p]
+      thisY <- allPerms[[p]]
       fNull <- DiaCor3(thisY, XNull, t(Z), nZ, nZG)
     }
 
