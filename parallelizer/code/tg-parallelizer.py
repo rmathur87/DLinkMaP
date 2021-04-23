@@ -197,7 +197,7 @@ for i in range( n_runs ):
 			if line.split(",")[0] == "phenotype":
 				temp_line = [
 					line.split(",")[0],
-					line.split(",")[1],
+					",".join(line.split(",")[1:-2]),
 					"TG"
 				]
 				add_line = ",".join(temp_line)
