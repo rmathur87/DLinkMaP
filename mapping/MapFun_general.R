@@ -182,7 +182,7 @@ LODp <- function(out) {
   -pchisq(2*dL, dfL, lower.tail = FALSE, log.p=T)/log(10)
 }
 
-### The greatly simplified function with extra componetns because they won't be defined in 
+### The greatly simplified function with extra components because they won't be defined in 
 ## the workspace.. 
 QTL.F.Map <- function(QTLI, L.V, LineM, LineF, XNull, XLNull, SS.Null, z, sqrtW=1) {
    ### Set Up X
